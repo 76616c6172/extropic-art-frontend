@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Gallery() {
+export default function Gallery() {
   return (
     		<React.Fragment>
           insert gallery here..
@@ -11,5 +11,3 @@ function Gallery() {
         </React.Fragment>
   );
 }
-
-export default Gallery;
