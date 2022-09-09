@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 //import reportWebVitals from './reportWebVitals/reportWebVitals';
-import App from './example/App';
+//import App from './example/App';
 import Navbar from './navbar/Navbar';
 import Gallery from './gallery/Gallery'
 
@@ -18,7 +18,6 @@ root.render(
 
       <Gallery />
 
-    <App />
   </React.StrictMode>
 );
 
