@@ -5,11 +5,13 @@ import './index.css';
 import App from './example/App';
 import Navbar from './navbar/Navbar';
 
+document.title = "Exia"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+
   <React.StrictMode>
     <Navbar />
     <App />
