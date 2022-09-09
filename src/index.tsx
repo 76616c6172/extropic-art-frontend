@@ -8,15 +8,16 @@ import Gallery from './gallery/Gallery'
 
 document.title = "Exia"
 
+// This is the root of the page
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
 
   <React.StrictMode>
-    <Navbar />
 
-      <Gallery />
+    <Navbar />
+    <Gallery />
 
   </React.StrictMode>
 );
