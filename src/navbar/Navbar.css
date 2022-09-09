@@ -1,0 +1,14 @@
+.Navbar {
+  text-align: center;
+}
+
+.Navbar-header {
+  background-color: #282c34;
+  display: flex;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Navbar-link {
+  color: #61dafb;
+}
