@@ -25,7 +25,7 @@ root.render(
   // <Navbar />
   <React.StrictMode>
 
-  <div className="py-6 max-w-prose">
+  <div className="py-6 min-w-full">
       <LiveLog/>
       {/* <Prompt/> */ }
       <JobQueue/>
