@@ -18,9 +18,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 
+    // <Navbar />
+
   <React.StrictMode>
 
-    <Navbar />
     <Gallery />
 
   </React.StrictMode>
