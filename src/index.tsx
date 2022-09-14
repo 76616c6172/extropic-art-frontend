@@ -1,28 +1,36 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './styles/index.css'
 
 //import 'bootstrap/dist/css/bootstrap.css'; //?
 //import './custom.scss'; //?
-
 //import reportWebVitals from './reportWebVitals/reportWebVitals';
 //import App from './example/App';
-import Navbar from './navbar/Navbar';
+
+// The Components
+import Navbar from './navbar/Navbar'
 import Gallery from './gallery/Gallery'
+import LiveLog from './livelog/LiveLog'
+import JobQueue from './jobqueue/JobQueue'
+import Prompt from './prompt/Prompt'
+
 
 document.title = "Exia"
 
-// This is the root of the page
+// Render the page
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-
-    // <Navbar />
-
+  // <Navbar />
   <React.StrictMode>
 
-    <Gallery />
+  <div className="py-6 max-w-prose">
+      <LiveLog/>
+      {/* <Prompt/> */ }
+      <JobQueue/>
+      <Gallery/>
+  </div>
 
   </React.StrictMode>
 );
