@@ -24,14 +24,12 @@ const root = ReactDOM.createRoot(
 root.render(
   // <Navbar />
   <React.StrictMode>
-
-  <div className="py-6 min-w-full">
-      <LiveLog/>
+  <div className="py-6 min-w-full max-w-6xl">
+      {/*(<LiveLog/>*/}
       {/* <Prompt/> */ }
-      <JobQueue/>
-      <Gallery/>
+      <JobQueue />
+      {/*<Gallery/>*/}
   </div>
-
   </React.StrictMode>
 );
 

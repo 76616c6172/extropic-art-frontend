@@ -23,6 +23,8 @@ export default function Gallery() {
 
    return (
      		<React.Fragment>
+          <br></br>
+          <div className='text-xl py-4'>Insert Infinite scroll gallery here</div>
           
            <Heading />
            <Loader />
