@@ -44,8 +44,10 @@ useEffect(()=>{
   const queuedJobList = response?.data.map ( (job: string) => {
        return <button className="hover:text-white break-all
        sm:text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl
-       px-1 py-1
-       "># / {job}</button> })
+       px-1 py-1"
+
+       onClick={() => console.log("click trigger")}
+       ># / {job} </button> })
 
 
   return ( <div className="rounded bg-black px-1 py-1 shadow-md">
