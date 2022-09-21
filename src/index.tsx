@@ -13,14 +13,18 @@ import Gallery from './gallery/Gallery'
 import LiveLog from './livelog/LiveLog'
 import JobQueue from './jobqueue/JobQueue'
 import Prompt from './prompt/Prompt'
+import axios from 'axios'
 
 
 document.title = "Exia"
+
 
 // Render the page
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+
 root.render(
   // <Navbar />
   <React.StrictMode>

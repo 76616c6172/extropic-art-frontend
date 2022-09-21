@@ -1,6 +1,42 @@
-import React from 'react';
+import React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
 
+
+// Sleep a milisecond time interval
+function delay(ms: number) {
+  return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+// TODO:
+// Figure out how to get a job with axios
+// Fetches a job and returns it
+const url = "https://exia.art/api/0"
+
+async function fetchJob(jobid: string) {
+
+
+  while (true) {
+    const response = axios.get(`${url}/jobs?jobid=${jobid}`)
+    console.log((await response).data.prompt)
+    // setX((await response).data.prompt)
+    await delay(5000)
+  }
+
+}
+
+// TODO / FIXME:
+// This does not work, I need to create my own hook
+// see:  https://reactjs.org/docs/hooks-custom.html
+
+// This function executes once on pageload
+// TODO: make it use hooks to rerender when data changes while requests for in background
 export default function JobQueue() {
+  fetchJob("2")
+
+// Just testing
+const [X, setX] = useState("Placeholder job set at first")
+
 
   // TODO:
   // Insert logic that fetches periodically through the API and builds the correct job queue
@@ -12,10 +48,12 @@ export default function JobQueue() {
   ];
 
   const jobList = exampleJobs.map ( (job) => {
-       return <div className="rounded bg-black hover:text-indigo-600
+       return <div className="hover:text-white
        sm:text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl
        px-1 py-1
-       "> # / {job} </div> })
+       "> {job} </div> })
 
-  return ( <React.Fragment> { jobList } </React.Fragment> )
+  return ( <div className="rounded bg-black px-1 py-1 shadow-md">
+    { jobList } </div>
+  )
 }
