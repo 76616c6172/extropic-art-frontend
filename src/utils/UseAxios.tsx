@@ -23,7 +23,7 @@ const useAxios = (axiosParams: AxiosRequestConfig) => {
     }
   };
 
-  const sendData = () => {
+  const sendRequest = () => {
     fetchData(axiosParams);
   }
 
@@ -33,7 +33,7 @@ const useAxios = (axiosParams: AxiosRequestConfig) => {
     }
   },[]);
 
-  return { response, error, loading, sendData };
+  return { response, error, loading, sendRequest };
 }
 
 export default useAxios;
