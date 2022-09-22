@@ -2,19 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles/index.css'
 
-//import 'bootstrap/dist/css/bootstrap.css'; //?
-//import './custom.scss'; //?
-//import reportWebVitals from './reportWebVitals/reportWebVitals';
-//import App from './example/App';
-
 // The Components
 import Navbar from './navbar/Navbar'
 import Gallery from './gallery/Gallery'
 import LiveLog from './livelog/LiveLog'
 import JobQueue from './jobqueue/JobQueue'
 import Prompt from './prompt/Prompt'
-import axios from 'axios'
 
+//import reportWebVitals from './reportWebVitals/reportWebVitals';
 
 document.title = "Exia"
 
@@ -26,8 +21,8 @@ const root = ReactDOM.createRoot(
 
 
 root.render(
-  // <Navbar />
   <React.StrictMode>
+  {/* <Navbar /> */ }
   <div className="py-6 min-w-full max-w-6xl">
       {/*(<LiveLog/>*/}
       {/* <Prompt/> */ }
