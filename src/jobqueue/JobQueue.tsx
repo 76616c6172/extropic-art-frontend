@@ -1,9 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 import useAxios from "../utils/UseAxios"
 
 const URL = "https://exia.art/api/1"
+const MS_TIME_BETWEEN_REFRESH = 5000
 
-// Helper function to provide a sleep time interval for the inifinite query loop in refreshJobQueue()
+let isFirstPageLoad = true
+
+// Helper function to provide a sleep time interval for the inifinite query loop in continouslyRefreshJobQueue()
 function delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );
 }
@@ -30,21 +33,24 @@ export default function JobQueue() {
     headers: {
       accept: '*/*'
     }
-  } );
+  })
 
-// refreshJobQueue runs asyncrhonously and reloads the jobqueue 
-// FIXME: Currently due to how useAxios is implemented, this currently refreshes twice everytime
-const refreshJobQueue = async () => {
-  while (true) {
-    await delay(5000)
-    sendRequest()
+  // Runs asyncrhonously and reloads the jobqueue
+  const continouslyRefreshJobQueue = async () => {
+    while (true) {
+      await delay(MS_TIME_BETWEEN_REFRESH)
+      sendRequest()
+    }
   }
-}
 
-// This fires once on page load and then everytime the state changes which is a bit of a waste
-useEffect(()=>{
-  refreshJobQueue();
-},[]); // Why do we need an empty array at the end again?
+  // This fires once on page load and then everytime the state changes which is a bit of a waste
+  useEffect(()=>{
+    if ( isFirstPageLoad ) {
+      continouslyRefreshJobQueue()
+      isFirstPageLoad = false
+    }
+    return
+  },[]) // Why do we need an empty array at the end again?
 
 	// Dynamically rebuild the joblist from the api response
   // React will automatically rebuild it whenever the api response changes)

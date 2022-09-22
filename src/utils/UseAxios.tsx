@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
-//axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
-//If you are using different URLs, consider removing this line and adding a baseURL in the Axios Config parameter. 
-
 // Function for making API requests with axios
 // for usage examples see: https://blog.sreejit.dev/custom-axios-hook-useaxios-in-typescript-react
 const useAxios = (axiosParams: AxiosRequestConfig) => {
