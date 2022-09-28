@@ -22,10 +22,8 @@ export default function Gallery() {
     }, []) //empty array needed here so it doesnt do it every time
 
    return (
-     		<React.Fragment>
-          <br></br>
-          <div className='text-xl py-4'>Insert Infinite scroll gallery here</div>
-          
+
+         /* 
            <Heading />
            <Loader />
            <GalleryImage />
@@ -34,7 +32,38 @@ export default function Gallery() {
          <div> Image 2</div>
          <div> Image 3</div>
          <div> Image ...</div>
-         </React.Fragment>
+         </div>
+          <div className='text-xl py-4'>Insert Infinite scroll gallery here</div>
+        */
+
+     		<div className=''>
+
+        <div className='
+        bg-black
+        opacity-40
+        hover:opacity-100 hover:cursor-pointer'>
+          <img className='rounded mx-auto justify-center' src="https://exia.art/api/0/img?type=thumbnail?jobid=1" />
+       </div>
+
+        <div className='
+        bg-black
+        opacity-30
+        hover:opacity-100 hover:cursor-pointer'>
+          <img className='rounded mx-auto justify-center' src="https://exia.art/api/0/img?type=thumbnail?jobid=2" />
+       </div>
+        <div className='
+        bg-black
+        opacity-30
+        hover:opacity-100 hover:cursor-pointer'>
+          <img className='rounded mx-auto justify-center' src="https://exia.art/api/0/img?type=thumbnail?jobid=3" />
+       </div>
+
+
+
+
+
+        </div>
+
   );
 
 }

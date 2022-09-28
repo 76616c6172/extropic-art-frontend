@@ -1,3 +1,4 @@
+import { stringify } from 'querystring'
 import { useEffect } from 'react'
 import useAxios from "../utils/UseAxios"
 
@@ -12,21 +13,50 @@ function delay(ms: number) {
 }
 
 // Outputs jsx to render a single job element
-function renderSingleQueuedJobElement(promptText: string) {
+function RenderJobPrompt(props: any) {
     return (
-      <div className="hover:text-white hover:cursor-pointer
-        sm:text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl
-        px-1 py-1"
-        onClick={() => console.log("click trigger")} >
-        {promptText}
+
+      <div className=''>
+       <div className="hover:text-white hover:cursor-pointer
+         sm:text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl
+         px-1 py-1"
+         onClick={() => alert(props.jobid)} >
+         {props.prompt} 
+       </div>
       </div>
     )
 }
 
+// Render single progress bar for an element in the job list
+function RenderProgressBar(props: any) {
+
+  const ProgressBar = () => {
+    return (
+        <div className='h-1 w-full bg-slate-900 rounded animate-pulse'>
+            <div
+                style={{ width: `${props.percentage}%`}}
+                className={`h-full ${
+                    props.percentage < 70 ? 'bg-pink-600' : 'bg-blue-600'}`}>
+            </div>
+        </div>
+      )
+    }
+
+          if (props.job_status === "processing" ) {
+        return(
+          <div>
+            < ProgressBar />
+            </div>
+          )
+        }
+   return( <div className="py-2"></div>)
+  }
+
+
 // <JobQueue /> dynamically renders the current job queue by making requests to the api/1/queue
 export default function JobQueue() {
 
-  // Custom axios react hook for making GET requests to /api/1/queue
+  // Custom axios react hook for GET-ing a list of jobs from the /queue
   const { response, loading, error, sendRequest } = useAxios( {
     method: "get",
     url: `${URL}/queue`,
@@ -54,11 +84,25 @@ export default function JobQueue() {
 
 	// Dynamically rebuild the joblist from the api response
   // React will automatically rebuild it whenever the api response changes)
-  const queuedJobList = response?.data.map(renderSingleQueuedJobElement)
+  const emitNewJobListElement = (job: any) => {
+  const percentage = job.iteration_status / job.iteration_max * 100
+
+    return ( 
+
+      // TODO? Does this need to be an actual <li> list? And does this need key props?
+     <div className="" key={job.job_id} >
+       <RenderJobPrompt prompt={job.prompt} jobid={job.jobid} />
+       <RenderProgressBar job_status={job.job_status} percentage={percentage} />
+     </div>
+    )
+  }
+  const queuedJobList = response?.data.map(emitNewJobListElement)
 
   return (
     <div className="rounded bg-black px-1 py-1 shadow-md">
+
       { queuedJobList }
+
     </div>
   )
 }

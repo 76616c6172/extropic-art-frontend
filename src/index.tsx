@@ -25,9 +25,9 @@ root.render(
   {/* <Navbar /> */ }
   <div className="py-6 min-w-full max-w-6xl">
       {/*(<LiveLog/>*/}
-      {/* <Prompt/> */ }
+      <Prompt />
       <JobQueue />
-      {/*<Gallery/>*/}
+      <Gallery />
   </div>
   </React.StrictMode>
 );
