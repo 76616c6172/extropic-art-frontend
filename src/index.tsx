@@ -1,34 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles/index.css'
-
-// The Components
-import Navbar from './navbar/Navbar'
-import Gallery from './gallery/Gallery'
-import LiveLog from './livelog/LiveLog'
-import JobQueue from './jobqueue/JobQueue'
-import Prompt from './prompt/Prompt'
-
 //import reportWebVitals from './reportWebVitals/reportWebVitals';
 
-document.title = "Exia"
+// Import Components
+import NAVBAR from './components/navbar/main'
+import GALLERY from './components/gallery/main'
+import LIVE_LOG_STREAM from './components/live-log-stream/main'
+import JOB_QUEUE from './components/job-queue/main'
+import PROMPT from './components/prompt/main'
 
+document.title = "Exia"
 
 // Render the page
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-
 root.render(
   <React.StrictMode>
-  {/* <Navbar /> */ }
-  <div className="py-6 min-w-full max-w-6xl">
-      {/*(<LiveLog/>*/}
-      <Prompt />
-      <JobQueue />
-      <Gallery />
-  </div>
+    {/* <NAVBAR /> */}
+    <div className="py-6 min-w-full max-w-6xl">
+      {/*(<LIVE_LOG_STREAM/>*/}
+      {/*<PROMPT />*/}
+      <JOB_QUEUE />
+      <div className='py-1'></div>
+      <GALLERY />
+    </div>
   </React.StrictMode>
 );
 

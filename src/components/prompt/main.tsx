@@ -3,20 +3,19 @@ import { setEnvironmentData } from "worker_threads"
 
 
 
-export default function Prompt() {
+export default function PROMPT() {
 
+  const [newVar, setVar] = useState("off")
 
-  const [ newVar, setVar ] = useState("off")
-
-   // Toggle between a / b
+  // Toggle between a / b
   const toggleFunc = () => {
-   if (newVar == "off") {
-   setVar("on")
-   }else{
-   setVar("off")
-   }
+    if (newVar == "off") {
+      setVar("on")
+    } else {
+      setVar("off")
+    }
 
-}
+  }
 
 
   return (
@@ -25,12 +24,12 @@ export default function Prompt() {
 
       <div className="rounded bg-black
          sm:text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl
-         px-1 py-10" >  
+         px-1 py-10" >
         <div className=""> {'>'} ...</div>
 
-    </div>
+      </div>
 
-			{ /*
+      { /*
       <div className="py-2">
 
         <div> Testing: {newVar} </div>
