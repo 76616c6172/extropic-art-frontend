@@ -24,7 +24,7 @@ root.render(
       {/*(<LIVE_LOG_STREAM/>*/}
       {/*<PROMPT />*/}
       <JOB_QUEUE />
-      <div className='py-1'></div>
+      <div className='py-40'></div>
       <GALLERY />
     </div>
   </React.StrictMode>
