@@ -20,12 +20,14 @@ export default function PROMPT() {
 
   return (
 
-    <div className="min-width-full py-2">
+    <div className="min-width-full py-1">
 
-      <div className="rounded bg-black
-         sm:text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl
-         px-1 py-10" >
-        <div className=""> {'>'} ...</div>
+      <div className="rounded bg-black justify-center max-w-sm
+         sm:text-xs md:text-md lg:text-md xl:text-lg 2xl:text-2xl
+         px-4 py-4" >
+        <div className="">
+          Insert cool prompt component here.
+        </div>
 
       </div>
 

@@ -1,65 +1,69 @@
-import React, { useState, useEffect, SetStateAction } from 'react';
+import React, { useState, useEffect, SetStateAction, useContext } from 'react';
+import { Waypoint } from "react-waypoint";
 
 import axios from 'axios';
 
-// import { FC } from 'react'; // Function component from react, return type we can use for strict typscript typing
+// Emits one gallery image element
+export function GALLERY_IMAGE(props: any) {
+  const IMG_URL = "https://exia.art/api/0/img?type=thumbnail?jobid="
+  const JOB_URL = "https://exia.art/api/0/jobs?jobid="
+
+  return (
+    <div>
+      <img className='mx-auto justify-center
+          border-black rounded-t-md py-5
+          opacity-50 hover:opacity-100 hover:cursor-pointer'
+        onClick={() => alert(props.img_url)}
+        src={IMG_URL + props.img_url} />
+      <p>{JOB_URL + props.img_url} </p>
+    </div>
+
+  )
+}
+
+// TODO: This should be set by the asynchronous query and should use a state hook to it rerenders
+// For testing purposes set this to a low value to not overload the web traffic
+const NEWEST_COMPLETED_JOBID = 350
 
 export default function Gallery() {
 
-  const [images, setImages]: SetStateAction<any> = useState([]);
+  const data = [
+    {
+      id: 1,
+      text: String(NEWEST_COMPLETED_JOBID - 1),
+    },
+  ]
 
-  useEffect(() => {
-    const apiRoot = "https://exia.art/api/0/img?type=thumbnail?jobid="
-    const imgNumber = "242"
-    axios
-      .get(`${apiRoot}${imgNumber}`)
-      //.then(res=>console.log(res.data)) //log debug info of the api data response in console
-      .then(res => setImages([...images, ...res.data]))
-  }, []) //empty array needed here so it doesnt do it every time
+  for (let i = 2; i < NEWEST_COMPLETED_JOBID; i++) {
+    data.push({ id: i, text: String(NEWEST_COMPLETED_JOBID - i) })
+  }
+
+  const useInfiniteScroll = (data: any, limit: any, page: any) => {
+    const ending = limit * page + 1;
+    return data.slice(0, ending);
+  }
+
+  const INFINITE_GALLERY = () => {
+    const limit = 1
+    const [page, setPage] = useState(1);
+    const completed_jobs = useInfiniteScroll(data, limit, page);
+    return (
+      <div className="">
+        {completed_jobs.map((element: any) => (
+          <React.Fragment key={element.id}>
+            < GALLERY_IMAGE img_url={element.text} />
+
+            {element.id - 1 === limit * page ? (
+              <Waypoint onEnter={() => setPage(page + 1)} />) : null}
+          </React.Fragment>
+        ))}
+      </div>
+    );
+  }
 
   return (
-
-    /* 
-      <Heading />
-      <Loader />
-      <GalleryImage />
- 
-    <div> Image 1 </div>
-    <div> Image 2</div>
-    <div> Image 3</div>
-    <div> Image ...</div>
-    </div>
-     <div className='text-xl py-4'>Insert Infinite scroll gallery here</div>
-   */
-
-
     <div className=' bg-black rounded'>
-
-      <img className='mx-auto justify-center
-          border-black rounded-t-md py-5
-          opacity-40 hover:opacity-100 hover:cursor-pointer'
-        src="https://exia.art/api/0/img?type=thumbnail?jobid=446" />
-
-      <img className='rounded mx-auto justify-center py-2
-          opacity-40 hover:opacity-100 hover:cursor-pointer'
-        src="https://exia.art/api/0/img?type=thumbnail?jobid=445" />
-
-      <img className='rounded mx-auto justify-center py-2
-          opacity-40 hover:opacity-100 hover:cursor-pointer'
-        src="https://exia.art/api/0/img?type=thumbnail?jobid=444" />
-
-      <img className='rounded mx-auto justify-center py-2
-          opacity-40 hover:opacity-100 hover:cursor-pointer'
-        src="https://exia.art/api/0/img?type=thumbnail?jobid=443" />
-
-      <img className='rounded mx-auto justify-center py-2
-          opacity-40 hover:opacity-100 hover:cursor-pointer'
-        src="https://exia.art/api/0/img?type=thumbnail?jobid=442" />
-
-
+      < INFINITE_GALLERY />
     </div>
-
-
   );
-
 }

@@ -8,7 +8,7 @@ export function JOB_PROMPT(props: any) {
         text-zinc-400
          sm:text-xs md:text-lg lg:text-lg xl:text-lg 2xl:text-2xl
          px-1"
-				onClick={() => alert(props.jobid)} >
+				onClick={() => alert("TODO: open jobid: " + props.jobid + " in new tab")} >
 				{props.prompt}
 			</div>
 		</div>
@@ -19,7 +19,7 @@ export function JOB_PROMPT(props: any) {
 export function PROGRESS_BAR(props: any) {
 	const BAR = () => {
 		return (
-			<div className='h-1 w-full bg-neutral-900 rounded animate-pulse'>
+			<div className='h-1 w-full bg-black rounded animate-pulse px-1'>
 				<div
 					style={{ width: `${props.percentage}%` }}
 					className={`h-full ${props.percentage < 70 ? 'bg-pink-600' : 'bg-pink-600'}`}>
