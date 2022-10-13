@@ -52,7 +52,9 @@ export default function JOB_QUEUE() {
   const job_list_componenet = response?.data.map(map_jobs_to_list_component)
 
   return (
-    <div className="rounded bg-black px-1 py-1 shadow-md">
+    <div className="rounded bg-black border-white
+    px-1 py-1 shadow-xl  shadow-cyan-500/50 
+    ">
       {job_list_componenet}
     </div>
   )

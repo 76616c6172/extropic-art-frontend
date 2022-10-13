@@ -11,7 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-image: linear-gradient( 179.4deg,  rgba(240,240,240,1) 14.6%, rgba(50,50,50,1) 104.7% );
+  background-image: linear-gradient( 179.4deg,  rgba(2,8,19,1) 100%, rgba(2,8,19,1) 100% );
   min-height: 100vh;
   display: flex;
   flex-direction: column;
