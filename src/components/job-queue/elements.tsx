@@ -1,4 +1,5 @@
-/* This file contans react UI components that are used to build up the JOB_QUEUE */
+// CONTAINS ALL EXPORTED REACT ui ELEMENTS THAT RENDER JSX AND ARE USED BY THE PARENT COMPONENT
+// THE FOLDER THIS FILE IS IN IS NAMED AFTER THE PARENT COMPONENT
 
 // Outputs jsx for the prompt component of a single job
 export function JOB_PROMPT(props: any) {

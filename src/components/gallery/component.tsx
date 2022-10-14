@@ -1,3 +1,6 @@
+// CONTAINS THE MAIN EXPORTED REACT COMPONENT OF THIS FOLDER WITH THE SAME NAME
+// TODO: CLEAN THIS CODE
+
 import React, { useState, useEffect, SetStateAction, useContext } from 'react';
 import { Waypoint } from "react-waypoint";
 
@@ -21,8 +24,6 @@ export function GALLERY_IMAGE(props: any) {
   )
 }
 
-// TODO: This should be set by the asynchronous query and should use a state hook to it rerenders
-// For testing purposes set this to a low value to not overload the web traffic
 const NEWEST_COMPLETED_JOBID = 350
 
 export default function Gallery() {

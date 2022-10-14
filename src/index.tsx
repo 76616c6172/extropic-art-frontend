@@ -7,8 +7,8 @@ import './styles/index.css'
 import NAVBAR from './components/navbar/main'
 import GALLERY from './components/gallery/main'
 import LIVE_LOG_STREAM from './components/live-log-stream/main'
-import JOB_QUEUE from './components/job-queue/main'
-import PROMPT from './components/prompt/main'
+import JOB_QUEUE from './components/job-queue/component'
+import PROMPT from './components/prompt/component'
 
 document.title = "Exia"
 
@@ -20,22 +20,30 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
 
-    {/* <NAVBAR /> */}
-    <div className="py-2 min-w-full max-w-6xl">
-      {/*(<LIVE_LOG_STREAM/>*/}
-      <div className='px-4'>
-        <PROMPT />
-      </div>
+    {/* 
+    <NAVBAR />
+    <LIVE_LOG_STREAM />
+    <PROMPT />
+    */}
+    <div className="py-1 min-w-full max-w-6xl">
+
+      <div className='py-4'> </div>
 
       <div className='py-2 px-5'>
         <JOB_QUEUE />
       </div>
 
-      <div className='py-40 px-1'>
+      <div className='py-10'></div>
+
+      {/* 
+      <div className='px-1'>
         <p>Welcome to project exia. Run state of the art machine learning models in the cloud to generate high resolution images from just text!</p>
       </div>
 
+      <div className='py-20'></div>
+    */}
 
+      <div className='py-10'></div>
 
       <div className='px-6'>
         <GALLERY />

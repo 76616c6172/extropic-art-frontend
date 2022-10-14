@@ -1,4 +1,5 @@
-/* This file contains all funcs used within the job-queue but do not emmit jsx and are not UI components  */
+// CONTAINS ALL EXPORTED FUNCTIONS THAT DONT RENDER JSX AND ARE USED BY COMPONENTS IN THIS FOLDER
+
 import { useState, useEffect } from 'react';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 

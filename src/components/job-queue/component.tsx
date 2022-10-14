@@ -1,10 +1,13 @@
+// CONTAINS THE MAIN EXPORTED REACT COMPONENT OF THIS FOLDER WITH THE SAME NAME
+
 import { useEffect } from 'react'
 // Import helper funcs
 import { useAxios } from './funcs'
 import { Delay } from './funcs'
 // Local components used by the main component
-import { JOB_PROMPT } from './components'
-import { PROGRESS_BAR } from './components'
+import { JOB_PROMPT } from './elements'
+import { PROGRESS_BAR } from './elements'
+
 // Globally scoped vars
 const URL = "https://exia.art/api/1"
 const MS_TIME_BETWEEN_REFRESH = 5000
