@@ -8,6 +8,7 @@ import { Delay } from './funcs'
 import { JOB_PROMPT } from './elements'
 import { PROGRESS_BAR } from './elements'
 
+
 // Globally scoped vars
 const URL = "https://exia.art/api/1"
 const MS_TIME_BETWEEN_REFRESH = 5000

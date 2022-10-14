@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles/index.css'
 //import reportWebVitals from './reportWebVitals/reportWebVitals';
@@ -11,21 +11,25 @@ import JOB_QUEUE from './components/job-queue/component'
 import PROMPT from './components/prompt/component'
 
 document.title = "Exia"
+//export const LatestJobContext = React.createContext(446);
+
 
 // Render the page
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+
 root.render(
   <React.StrictMode>
+    {/* <LatestJobContext.Provider value={446} > */}
 
     {/* 
+      <NAVBAR />
     <PROMPT />
       <LIVE_LOG_STREAM />
     */}
     <div className="py-1 min-w-full max-w-6xl">
-      <NAVBAR />
 
       <div className='py-4'> </div>
 
@@ -50,6 +54,9 @@ root.render(
       </div>
 
     </div>
+
+    {/* </LatestJobContext.Provider> */}
+
   </React.StrictMode >
 );
 
