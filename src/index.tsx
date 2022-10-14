@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client'
 import './styles/index.css'
 //import reportWebVitals from './reportWebVitals/reportWebVitals';
 
-// Import Components
-import NAVBAR from './components/navbar/main'
-import GALLERY from './components/gallery/main'
-import LIVE_LOG_STREAM from './components/live-log-stream/main'
+// Import React Components
+import NAVBAR from './components/navbar/component'
+import GALLERY from './components/gallery/component'
+import LIVE_LOG_STREAM from './components/live-log-stream/component'
 import JOB_QUEUE from './components/job-queue/component'
 import PROMPT from './components/prompt/component'
 
@@ -21,11 +21,11 @@ root.render(
   <React.StrictMode>
 
     {/* 
-    <NAVBAR />
-    <LIVE_LOG_STREAM />
     <PROMPT />
+      <LIVE_LOG_STREAM />
     */}
     <div className="py-1 min-w-full max-w-6xl">
+      <NAVBAR />
 
       <div className='py-4'> </div>
 
