@@ -61,7 +61,7 @@ export default function Gallery() {
   }
 
   const INFINITE_GALLERY = () => {
-    const limit = 2
+    const limit = 3
     const [page, setPage] = useState(1);
     const rendered_image_list = useInfiniteScroll(job_list, limit, page);
     return (
