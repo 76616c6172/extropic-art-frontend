@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles/index.css'
 //import reportWebVitals from './reportWebVitals/reportWebVitals';
@@ -9,29 +9,35 @@ import GALLERY from './components/gallery/component'
 import LIVE_LOG_STREAM from './components/live-log-stream/component'
 import JOB_QUEUE from './components/job-queue/component'
 import PROMPT from './components/prompt/component'
+import axios from 'axios'
 
 document.title = "Exia"
 //export const LatestJobContext = React.createContext(446);
 
+export var TEST = "meep"
+const API_URL_STATUS_ENDPOINT = "https://exia.art/api/0/status"
+var STATUS_RESPONSE: any
 
 // Render the page
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+console.log(STATUS_RESPONSE)
 
 root.render(
   <React.StrictMode>
     {/* <LatestJobContext.Provider value={446} > */}
 
     {/* 
-      <NAVBAR />
     <PROMPT />
+      <NAVBAR />
       <LIVE_LOG_STREAM />
     */}
     <div className="py-1 min-w-full max-w-6xl">
 
       <div className='py-4'> </div>
+
 
       <div className='py-2 px-5'>
         <JOB_QUEUE />

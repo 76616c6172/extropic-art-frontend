@@ -1,6 +1,5 @@
 // CONTAINS THE MAIN EXPORTED REACT COMPONENT OF THIS FOLDER WITH THE SAME NAME
-
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 // Import helper funcs
 import { useAxios } from './funcs'
 import { Delay } from './funcs'
@@ -18,11 +17,10 @@ let IS_FIRST_PAGE_LOAD = true
 const map_jobs_to_list_component = (Job: any) => {
   const percentage = Job.iteration_status / Job.iteration_max * 100
   return (
-    // TODO? Does this need to be an actual <li> list? And does this need key props?
-    <div className="" key={Job.job_id} >
+    <React.Fragment key={Job.jobid}>
       <JOB_PROMPT prompt={Job.prompt} jobid={Job.jobid} />
       <PROGRESS_BAR job_status={Job.job_status} percentage={percentage} />
-    </div>
+    </React.Fragment>
   )
 }
 
@@ -37,6 +35,7 @@ export default function JOB_QUEUE() {
       accept: '*/*'
     }
   })
+
   // Asynchrounously makes requests to check the live job queue over and over
   const continouslyRefreshJobQueue = async () => {
     while (true) {
@@ -57,7 +56,7 @@ export default function JOB_QUEUE() {
 
   return (
     <div className="rounded bg-black
-    px-1 py-2 shadow-xl  shadow-cyan-500/25 
+    px-1 py-2 shadow-xl  shadow-cyan-500/25
     ">
       {job_list_componenet}
     </div>
