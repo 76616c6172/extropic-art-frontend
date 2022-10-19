@@ -23,8 +23,6 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-console.log(STATUS_RESPONSE)
-
 root.render(
   <React.StrictMode>
     {/* <LatestJobContext.Provider value={446} > */}

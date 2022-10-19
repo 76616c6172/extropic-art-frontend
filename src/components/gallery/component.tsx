@@ -9,21 +9,22 @@ import { TEST } from "../../index" //testing importing "global state variable"
 import axios from 'axios'
 import { prototype } from 'events'
 
+const URL = "https://exia.art/api/1"
+const MS_TIME_BETWEEN_REFRESH = 5000
 
-
-// import { LatestJobContext } from '../..';
-
-// TODO: Don't hardcode this
-const JOB_QUEUE_STATE_CHANGED = false
-
-const IMG_API_URL = "https://exia.art/api/0/img?type=full?jobid="
-
-var loaded = false
+var DID_SET_NEWEST_JOB = false
+var IS_FIRST_PAGE_LOAD = true
+var RECEIVED_DATA_FROM_QUEUE_API = false
+var LIVE_NEWEST_COMPLETED_JOB: string = ""
+var OLD_NEWEST_COMPLETED_JOB: any = null
+var COUNTER = 1
 
 // Emits one gallery image job_object
 export function GALLERY_IMAGE(props: any) {
   const IMG_API_URL = "https://exia.art/api/0/img?type=full?jobid="
   const JOB_URL = "https://exia.art/api/0/jobs?jobid="
+
+  // Set up reactive variable jobMetadData for use by each gallery image element
   const [jobMetaData, setJobMetaData] = useState(
     {
       "jobid": "0", "prompt": "loading..", "job_status": "completed", "iteration_status": 0, "iteration_max": 250, "img_path": "https://exia.art/api/0/img?jobid=0"
@@ -58,28 +59,11 @@ shadow-xl  shadow-[#db5481]/10
 
       </div>
 
-
-
       <div className="py-4 bg-transparent"></div>
     </div >
   )
 }
 
-const URL = "https://exia.art/api/1"
-const MS_TIME_BETWEEN_REFRESH = 5000
-let IS_FIRST_PAGE_LOAD = true
-let RECEIVED_DATA_FROM_QUEUE_API = false
-let OLD_RESPONSE: any = null
-let COUNTER = 1
-var NEW_RESPONSE: any = null
-
-// Helper function that sets RESPONSE to the passed in value
-export function Update_Response(props: any) {
-  NEW_RESPONSE = props.response
-  return (
-    <div></div>
-  )
-}
 
 
 // Prompt component for each gallery image
@@ -89,7 +73,8 @@ function Prompt(props: any) {
 }
 
 export default function Gallery() {
-  const NEWEST_COMPLETED_JOBID = 220
+
+  var [NEWEST_COMPLETED_JOB_ON_FIRST_LOAD, setNewesstJobOnFirstLoad] = useState(0)
 
 
 
@@ -106,15 +91,17 @@ export default function Gallery() {
   const gallery_items_list = [
     {
       id: 1,
-      jobid: String(NEWEST_COMPLETED_JOBID),
+      jobid: String(NEWEST_COMPLETED_JOB_ON_FIRST_LOAD),
     },
   ]
+
   // TODO SCALING CHANGE:
   // Build out the full list of completed job objects based on the latest completed job
   // This will have to be changed to not build all the way down to job 1
   // But rather depend on how far the user has scrolled, else it won't scale to 1000x jobs
+
   let id = 2
-  for (let i = NEWEST_COMPLETED_JOBID - 1; i > 0; i--) {
+  for (let i = NEWEST_COMPLETED_JOB_ON_FIRST_LOAD - 1; i > 0; i--) {
     gallery_items_list.push({ id: id, jobid: String(i) })
     id++
   }
@@ -168,12 +155,12 @@ export default function Gallery() {
     })
 
     // maps an array [ {jobid: 300}, {jobid: 200} ] and adds all items to the live gallery
-    const update_img_list = (j: any) => {
+    const update_img_list = (i: string) => {
       const new_list = dynamicImgList
       new_list.push(
         {
           id: COUNTER,
-          jobid: j.jobid
+          jobid: i
         },
       )
       setDyanmicImgList(new_list)
@@ -183,64 +170,84 @@ export default function Gallery() {
     // Asynchrounously makes requests to check the live job queue over and over
     const continouslyRefreshJobQueue = async () => {
       while (true) {
-        // change the auto refreshing list component
-        // Here add the function to add tco the img list as jobs finish from the queue
-        if (RECEIVED_DATA_FROM_QUEUE_API) {
-          //console.log("old:", OLD_RESPONSE)
-          //console.log("new:", NEW_RESPONSE)
-          // BUG BUG BUG
-          // the simple problem the next line will be executed before the data has been received so it doesn't work!
-          // SOLUTION:
-          // I need to call another function in the same way I called delay that finshes when data has been received
-          // And I need to make a new api endpoint api/2/status that shows the last completed job
-          //console.log(response?.data)
-          //OLD_RESPONSE.map(update_img_list)
-        }
-        await Delay(MS_TIME_BETWEEN_REFRESH)
         sendRequest()
+        axios.get(URL + "/status").then((result) => {
+          OLD_NEWEST_COMPLETED_JOB = LIVE_NEWEST_COMPLETED_JOB
+          LIVE_NEWEST_COMPLETED_JOB = result.data.newest_completed_job
+
+          //console.log(LIVE_NEWEST_COMPLETED_JOB)
+
+          if (DID_SET_NEWEST_JOB && LIVE_NEWEST_COMPLETED_JOB != OLD_NEWEST_COMPLETED_JOB) {
+            // Push the difference in jobids
+            const live_newest_completed_job = parseInt(LIVE_NEWEST_COMPLETED_JOB)
+            const old_newest_completed_job = parseInt(OLD_NEWEST_COMPLETED_JOB)
+            const number_of_new_completed_jobs = live_newest_completed_job - old_newest_completed_job
+
+            //build the array to be pushed to the live gallery
+
+            // Push it
+            for (var i = live_newest_completed_job; i > old_newest_completed_job; i--) {
+              update_img_list(i.toString())
+              console.log("pushed jobd:", i)
+            }
+          }
+
+
+
+
+
+
+
+
+          if (!DID_SET_NEWEST_JOB) {
+            setNewesstJobOnFirstLoad(parseInt(LIVE_NEWEST_COMPLETED_JOB))
+            DID_SET_NEWEST_JOB = true
+          }
+
+        }).catch(err => {
+          console.log(err)
+        })
+        await Delay(MS_TIME_BETWEEN_REFRESH)
       }
     }
-
-
     // Fire the live queue request loop only once on page load
     useEffect(() => {
       if (IS_FIRST_PAGE_LOAD) {
         continouslyRefreshJobQueue()
-        // set NEWEST_COMPLETED_JOBID
-        //OLD_RESPONSE = response?.data
         IS_FIRST_PAGE_LOAD = false
+        // set NEWEST_COMPLETED_JOB_ON_FIRST_LOAD
+        //OLD_RESPONSE = response?.data
       }
       return
-    }, []) // Why do we need an empty array at the end again?
+    }, []) // Empty array so this only happens on first page load and not every time the component reloads
 
+    /*
     /// check the first image list item
     if (dynamicImgList[0].jobid == "0" || RECEIVED_DATA_FROM_QUEUE_API) {
       if (response?.data.length > 0) {
         //console.log("response has length greater 1")
         //console.log("saving response data")
+        console.log(response?.data)
         OLD_RESPONSE = response?.data
         RECEIVED_DATA_FROM_QUEUE_API = true
       }
-
-
     }
-    // check the oldest job in the queue
-    if (response?.data[response.data.length - 1].jobid == 1) {
-      console.log(response?.data)
-    }
+      */
+
+    const List_element = dynamicImgList.slice(0).reverse().map((job_object: any) => (
+      <React.Fragment key={job_object.id}>
+        < GALLERY_IMAGE jobid={job_object.jobid} />
+      </React.Fragment>
+    ))
+
 
     // Only render this element when new jobs move "down" from the queue
-    if (dynamicImgList.length > 1) {
+    if (dynamicImgList.length > 0) {
       return (
         <div className="">
           {dynamicImgList.slice(0).reverse().map((job_object: any) => (
             <React.Fragment key={job_object.id}>
               < GALLERY_IMAGE jobid={job_object.jobid} />
-
-              {/* FIXME: Crazy ugly  hack to update the NEW_RESPONSE variable */}
-              {!loading && (
-                <Update_Response response={response?.data}></Update_Response>
-              )}
 
             </React.Fragment>
           ))}
@@ -253,7 +260,6 @@ export default function Gallery() {
 
   return (
     <div>
-      < Update_Response />
       < LIVE_GALLERY />
       < INFINITE_GALLERY />
     </div>

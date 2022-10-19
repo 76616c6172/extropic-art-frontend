@@ -10,7 +10,7 @@ import { PROGRESS_BAR } from './elements'
 
 // Globally scoped vars
 const URL = "https://exia.art/api/1"
-const MS_TIME_BETWEEN_REFRESH = 5000
+const MS_TIME_BETWEEN_REFRESH = 2000
 let IS_FIRST_PAGE_LOAD = true
 
 // Rebuild the joblist from the api response, react will rebuilds it whenever the api response changes
@@ -39,8 +39,8 @@ export default function JOB_QUEUE() {
   // Asynchrounously makes requests to check the live job queue over and over
   const continouslyRefreshJobQueue = async () => {
     while (true) {
-      await Delay(MS_TIME_BETWEEN_REFRESH)
       sendRequest()
+      await Delay(MS_TIME_BETWEEN_REFRESH)
     }
   }
   // Fire the live queue request loop only once on page load
@@ -49,8 +49,7 @@ export default function JOB_QUEUE() {
       continouslyRefreshJobQueue()
       IS_FIRST_PAGE_LOAD = false
     }
-    return
-  }, []) // Why do we need an empty array at the end again?
+  }, []) // Empty array so this is only triggered once
 
   const job_list_componenet = response?.data.map(map_jobs_to_list_component)
 
