@@ -33,16 +33,30 @@ export function GALLERY_IMAGE(props: any) {
   }, []); //empty array as second argument so the request only fires once per element
   // if this is ommited react will fire this every time GALLERY_IMAGE is rerendered causing an infinite loop 
 
-
+  //opacity-50 hover:opacity-100 
   return (
-    <div>
-      <img className='mx-auto justify-center
-          border-black rounded-t-md py-5
-          opacity-50 hover:opacity-100 hover:cursor-pointer'
-        onClick={() => alert(props.jobid)}
-        src={IMG_URL + props.jobid} />
-      <div className="px-5"> <Prompt job={jobMetaData} />
-      </div >
+    <div className="opacity-80 hover:opacity-100" >
+
+      <div className='bg-black rounded 
+
+shadow-xl  shadow-[#db5481]/25
+          '>
+
+        <img className='mx-auto justify-center
+          hover:cursor-pointer'
+          onClick={() => alert(props.jobid)}
+          src={IMG_URL + props.jobid} />
+
+        <div className="px-1 py-1 rounded
+shadow-xl  shadow-[#db5481]/25
+          bg-black"> <Prompt job={jobMetaData} />
+        </div>
+
+      </div>
+
+
+
+      <div className="py-4 bg-transparent"></div>
     </div>
   )
 }
@@ -63,8 +77,15 @@ export function Update_Response(props: any) {
   )
 }
 
+
+// Prompt component for each gallery image
+function Prompt(props: any) {
+  return <div className="text-center
+  ">{props.job.prompt}</div>
+}
+
 export default function Gallery() {
-  const NEWEST_COMPLETED_JOBID = 446
+  const NEWEST_COMPLETED_JOBID = 440
 
 
 
@@ -106,14 +127,11 @@ export default function Gallery() {
     const [page, setPage] = useState(1);
     const rendered_image_list = useInfiniteScroll(gallery_items_list, limit, page);
 
-
-
     return (
       <div className="">
         {rendered_image_list.map((job_object: any) => (
           <React.Fragment key={job_object.id}>
             < GALLERY_IMAGE jobid={job_object.jobid} />
-
             {job_object.id - 1 === limit * page ? (
               <Waypoint onEnter={() => setPage(page + 1)} />) : null}
           </React.Fragment>
@@ -230,15 +248,10 @@ export default function Gallery() {
   }
 
   return (
-    <div className=' bg-black rounded'>
+    <div>
       < Update_Response />
       < LIVE_GALLERY />
       < INFINITE_GALLERY />
     </div>
   );
-}
-
-// Prompt component for each gallery image
-function Prompt(props: any) {
-  return <div>{props.job.prompt}</div>
 }

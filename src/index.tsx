@@ -43,7 +43,6 @@ root.render(
         <JOB_QUEUE />
       </div>
 
-      <div className='py-10'></div>
 
       {/* 
       <div className='px-1'>

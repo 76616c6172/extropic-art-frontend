@@ -56,7 +56,8 @@ export default function JOB_QUEUE() {
 
   return (
     <div className="rounded bg-black
-    px-1 py-2 shadow-xl  shadow-cyan-500/25
+    px-1 py-2 shadow-xl  
+shadow-xl  shadow-[#db5481]/25
     ">
       {job_list_componenet}
     </div>
