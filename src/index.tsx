@@ -42,9 +42,11 @@ root.render(
       <div className='py-2 px-5'>
         <JOB_QUEUE />
       </div>
+      <div className='py-10'> </div>
 
 
-      {/* 
+      {
+      /* 
       <div className='px-1'>
         <p>Welcome to project exia. Run state of the art machine learning models in the cloud to generate high resolution images from just text!</p>
       </div>

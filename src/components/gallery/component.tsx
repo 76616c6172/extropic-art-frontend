@@ -9,18 +9,20 @@ import { TEST } from "../../index" //testing importing "global state variable"
 import axios from 'axios'
 import { prototype } from 'events'
 
+
+
 // import { LatestJobContext } from '../..';
 
 // TODO: Don't hardcode this
 const JOB_QUEUE_STATE_CHANGED = false
 
-let gallery_prompts = new Map<string, { loaded: boolean, prompt: string, seed: string }>();
+const IMG_API_URL = "https://exia.art/api/0/img?type=full?jobid="
 
 var loaded = false
 
 // Emits one gallery image job_object
 export function GALLERY_IMAGE(props: any) {
-  const IMG_URL = "https://exia.art/api/0/img?type=thumbnail?jobid="
+  const IMG_API_URL = "https://exia.art/api/0/img?type=full?jobid="
   const JOB_URL = "https://exia.art/api/0/jobs?jobid="
   const [jobMetaData, setJobMetaData] = useState(
     {
@@ -38,17 +40,19 @@ export function GALLERY_IMAGE(props: any) {
     <div className="opacity-80 hover:opacity-100" >
 
       <div className='bg-black rounded 
+      shadow-xl  shadow-[#db5481]/25 '
+      >
 
-shadow-xl  shadow-[#db5481]/25
-          '>
 
-        <img className='mx-auto justify-center
+        <a href={IMG_API_URL + props.jobid} target="_blank" rel="noopener noreferrer">
+          <img className='mx-auto justify-center
           hover:cursor-pointer'
-          onClick={() => alert(props.jobid)}
-          src={IMG_URL + props.jobid} />
+            /* onClick={() => alert(props.jobid)} */
+            src={IMG_API_URL + props.jobid} />
+        </a>
 
         <div className="px-1 py-1 rounded
-shadow-xl  shadow-[#db5481]/25
+shadow-xl  shadow-[#db5481]/10
           bg-black"> <Prompt job={jobMetaData} />
         </div>
 
@@ -57,7 +61,7 @@ shadow-xl  shadow-[#db5481]/25
 
 
       <div className="py-4 bg-transparent"></div>
-    </div>
+    </div >
   )
 }
 
@@ -85,7 +89,7 @@ function Prompt(props: any) {
 }
 
 export default function Gallery() {
-  const NEWEST_COMPLETED_JOBID = 440
+  const NEWEST_COMPLETED_JOBID = 220
 
 
 
