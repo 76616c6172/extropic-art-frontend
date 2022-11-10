@@ -10,13 +10,13 @@ function Prompt(props: any) {
 }
 
 export function GALLERY_IMAGE(props: any) {
-	const IMG_API_URL = "https://exia.art/api/0/img?type=full?jobid="
-	const JOB_URL = "https://exia.art/api/0/jobs?jobid="
+	const IMG_API_URL = "https://extropic.art/api/0/img?type=full?jobid="
+	const JOB_URL = "https://extropic.art/api/0/jobs?jobid="
 
 	// Set up reactive variable jobMetadData for use by each gallery image element
 	const [jobMetaData, setJobMetaData] = useState(
 		{
-			"jobid": "0", "prompt": "loading..", "job_status": "completed", "iteration_status": 0, "iteration_max": 250, "img_path": "https://exia.art/api/0/img?jobid=0"
+			"jobid": "0", "prompt": "loading..", "job_status": "completed", "iteration_status": 0, "iteration_max": 250, "img_path": "https://extropic.art/api/0/img?jobid=0"
 		})
 	useEffect(() => {
 		axios.get(JOB_URL + props.jobid).then(resp => {

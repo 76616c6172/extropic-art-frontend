@@ -9,7 +9,7 @@ import { PROGRESS_BAR } from './elements'
 
 
 // Globally scoped vars
-const URL = "https://exia.art/api/1"
+const URL = "https://extropic.art/api/1"
 const MS_TIME_BETWEEN_REFRESH = 2000
 let IS_FIRST_PAGE_LOAD = true
 
@@ -56,7 +56,7 @@ export default function JOB_QUEUE() {
   return (
     <div className="rounded bg-black
     px-1 py-2 shadow-xl  
-shadow-xl  shadow-[#db5481]/25
+    shadow-xl  shadow-[#db5481]/25
     ">
       {job_list_componenet}
     </div>

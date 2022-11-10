@@ -11,11 +11,11 @@ import JOB_QUEUE from './components/job-queue/component'
 import PROMPT from './components/prompt/component'
 import axios from 'axios'
 
-document.title = "Exia"
+document.title = "extropic - art"
 //export const LatestJobContext = React.createContext(446);
 
 export var TEST = "meep"
-const API_URL_STATUS_ENDPOINT = "https://exia.art/api/0/status"
+const API_URL_STATUS_ENDPOINT = "https://extropic.art/api/0/status"
 var STATUS_RESPONSE: any
 
 // Render the page
@@ -28,16 +28,14 @@ root.render(
     {/* <LatestJobContext.Provider value={446} > */}
 
     {/* 
-    <PROMPT />
       <NAVBAR />
       <LIVE_LOG_STREAM />
     */}
     <div className="py-1 min-w-full max-w-6xl">
-
       <div className='py-4'> </div>
-
-
       <div className='py-2 px-5'>
+        <PROMPT />
+        <div className='py-2'></div>
         <JOB_QUEUE />
       </div>
       <div className='py-10'> </div>

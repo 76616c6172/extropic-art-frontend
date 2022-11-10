@@ -9,8 +9,8 @@ import axios from 'axios'
 
 import { GALLERY_IMAGE } from './elements'
 
-const URL = "https://exia.art/api/1"
-const JOBS_API_URL = "https://exia.art/api/0/jobs?jobid="
+const URL = "https://extropic.art/api/1"
+const JOBS_API_URL = "https://extropic.art/api/0/jobs?jobid="
 const MS_TIME_BETWEEN_REFRESH = 2000
 
 var LIVE_GAL_NOT_FIRED_LOOP = true
