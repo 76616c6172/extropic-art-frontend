@@ -2,16 +2,13 @@ import React, { Fragment, useState } from "react"
 //import React, { useState } from 'react';
 
 import Select from 'react-select';
-//import { colourOptions } from '../data';
-
-// import { setEnvironmentData } from "worker_threads"
 
 import {
   Accordion,
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
-import { stringify } from "querystring";
+import axios from "axios";
 
 export default function PROMPT() {
   const [open, setOpen] = useState(1);
@@ -28,13 +25,55 @@ export default function PROMPT() {
     </label>
   );
 
+
   const [submissionButtonIsBusy, setSubMissionButtonIsBusy] = useState(false)
-  const toggleFunc = () => {
-    if (submissionButtonIsBusy == false) {
-      setSubMissionButtonIsBusy(true)
-    } else {
-      setSubMissionButtonIsBusy(false)
+  const handlePromptSubmission = () => {
+    /*
+    console.log(prompt)
+    console.log("model Pipeline: ", modelPipeline)
+    console.log("use custom seed: ", isCustomSeed)
+    console.log("seed: ", seed)
+    console.log("high guidance: ", isHighGuidance)
+    console.log("upscale: ", isUpScale)
+    */
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
     }
+
+    setSubMissionButtonIsBusy(true)
+    axios.post("https://extropic.art/api/1/jobs",
+      {
+        model_pipeline: modelPipeline,
+        prompt: prompt,
+        lock_seed: isCustomSeed,
+        seed: seed,
+        high_guidance: isHighGuidance,
+        upscale: isUpScale,
+      },
+      { headers: headers }
+    ).then((result) => {
+      setSubMissionButtonIsBusy(false)
+    }).catch(err => {
+      console.log(err)
+      setSubMissionButtonIsBusy(false)
+    })
+
+    /*
+    const response = async () => {
+      const resp = await axios.post("https://extropic.art/api/1/jobs/",
+        {
+          prompt: prompt
+        }
+      )
+      console.log("yo")
+      //resp.data.data
+      //resp.data.headers['Content-Type']
+    }
+    */
+
+
   }
 
   const [isClearable, setIsClearable] = useState(false);
@@ -53,20 +92,34 @@ export default function PROMPT() {
   const dropDownOptions = [
     {
       value: 1,
-      label: "Stable Diffusion (512x512) - square",
+      label: "Stable Diffusion (512x512)",
       display: "Stable Diffusion (512x512)",
     },
     {
-      value: "2",
-      label: "Stable Diffusion (512x768) - portrait",
+      value: 2,
+      label: "Stable Diffusion (512x768)",
       display: "Stable Diffusion (512x768)",
     },
     {
-      value: "3",
-      label: "Stable Diffusion (768x512) - scenic",
+      value: 3,
+      label: "Stable Diffusion (768x512)",
       display: "Stable Diffusion (768x512)",
     }
   ]
+  // set up stateful user prompt input meta data
+  const [prompt, setPrompt] = useState("")
+  const [seed, setSeed] = useState("")
+  const [modelPipeline, setModelPipeline] = useState(1)
+  // track and save the user provided metadata for job submissions
+  const handlePromptChange = (a: any) => {
+    setPrompt(a.target.value)
+  }
+  const handleSeedChange = (a: any) => {
+    setSeed(a.target.value)
+  }
+  const handleModelPipelineChange = (a: any) => {
+    setModelPipeline(a.value)
+  }
 
   return (
 
@@ -81,8 +134,29 @@ export default function PROMPT() {
         {/* Model pipeline dropdown selection */}
         {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
         <Select
-          className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black"
+          theme={(theme) => ({
+            ...theme,
+            borderRadius: 0,
+            colors: {
+              ...theme.colors,
+              primary: '#db5481',
+              primary50: '#000000',
+              primary25: '#000000',
+              text: '#000000',
+              neutral0: '#000000',
+              neutral5: '#000000',
+              neutral10: '#000000',
+              neutral20: '#000000',
+              neutral30: '#000000',
+              neutral80: '#ffffff', // title
+              neutral90: '#0000000',
+
+            },
+          })}
+          className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black 
+          "
           classNamePrefix="select"
+          onChange={handleModelPipelineChange}
           defaultValue={dropDownOptions[0]}
           isDisabled={isDisabled}
           isClearable={isClearable}
@@ -96,8 +170,6 @@ export default function PROMPT() {
         <div className="py-1 ">
           <div>
 
-
-
           </div>
           <textarea className="
               bg-black flex-wrap
@@ -107,14 +179,16 @@ export default function PROMPT() {
               px-5
               pb-20
               text-base
-              border-none
+              border-noneg
               rounded
               transition
               ease-in-out
               m-0
               leading-tight 
               shadow appearance-none py-2 text-zinc-400 focus:outline-none focus:shadow-outline"
-            id="prompt" placeholder="A beautiful painting of a singular lighthouse, shining its light across a tumultuous sea of blood by greg rutkowski and thomas kinkade, trending on Artstation..">
+            id="prompt"
+            onChange={handlePromptChange}
+            placeholder=" > _ ">
           </textarea>
         </div>
 
@@ -161,6 +235,7 @@ export default function PROMPT() {
                           focus:text-gray-200 focus:bg-black focus:border-zinc-200 focus:outline-none
                         "
                     id="userSeedInput"
+                    onChange={handleSeedChange}
                     placeholder="provide custom seed"
                   />
                 </div>
@@ -175,6 +250,7 @@ export default function PROMPT() {
                   </Checkbox>
                 </div>
 
+                {/*
                 <div>
                   <Checkbox
                     checked={isUpScale}
@@ -183,6 +259,7 @@ export default function PROMPT() {
                     <text className="px-3" > upscale </text>
                   </Checkbox>
                 </div>
+              */}
 
 
                 {/*}
@@ -227,7 +304,7 @@ export default function PROMPT() {
             border-solid border-2 border-sky-500
           hover:text-sky-500
             "
-            onClick={() => toggleFunc()}>
+            onClick={() => handlePromptSubmission()}>
             <div className="flex">
               <div className=""> <SubmissionButton buttonLoading={submissionButtonIsBusy} /> </div>
             </div>
@@ -268,37 +345,3 @@ function SubmissionButton(props: any) {
   }
   return <ButtonIsReady />;
 }
-
-/*
-export default function PROMPT() {
-
-  const [submissionButtonIsBusy, setSubMissionButtonIsBusy] = useState("off")
-
-
-
-          return (
-
-          <div className="min-width-full py-1">
-
-            <div className="rounded bg-black justify-center max-w-sm
-         sm:text-xs md:text-md lg:text-md xl:text-lg 2xl:text-2xl
-         px-4 py-4" >
-              <div className="">
-                Insert cool prompt component here.
-              </div>
-
-            </div>
-
-            { /*
-
-      <div className="py-2">
-        <div> Testing: {submissionButtonIsBusy} </div>
-        <button className="py-2 px-2 rounded bg-slate-600 hover:bg-slate-300" onClick={ () => toggleFunc() }>Toggle on/off</button>
-      </div>
-    }
-
-    </div>
-
-  );
-}
-*/
