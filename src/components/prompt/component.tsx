@@ -124,6 +124,13 @@ export default function PROMPT() {
   return (
 
     <Fragment>
+      <div className="">
+        <blockquote className="border-l-4 border-green-500 text-white animate-pulse
+          p-4 my-4  dark:bg-black bg-black"
+        >
+          STATUS: Prompt submissions are currently disabled.
+        </blockquote>
+      </div>
 
 
       <div className="rounded bg-black
