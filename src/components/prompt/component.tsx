@@ -140,37 +140,39 @@ export default function PROMPT() {
 
         {/* Model pipeline dropdown selection */}
         {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
-        <Select
-          theme={(theme) => ({
-            ...theme,
-            borderRadius: 0,
-            colors: {
-              ...theme.colors,
-              primary: '#db5481',
-              primary50: '#000000',
-              primary25: '#000000',
-              text: '#000000',
-              neutral0: '#000000',
-              neutral5: '#000000',
-              neutral10: '#000000',
-              neutral20: '#000000',
-              neutral30: '#000000',
-              neutral80: '#ffffff', // title
-              neutral90: '#0000000',
+        <div>
+          <Select
+            theme={(theme) => ({
+              ...theme,
+              borderRadius: 0,
+              colors: {
+                ...theme.colors,
+                primary: '#db5481',
+                primary25: '#000000',
+                text: '#000000',
+                neutral0: '#000000',
+                neutral5: '#000000',
+                neutral10: '#000000',
+                neutral20: '#000000',
+                neutral30: '#000000',
+                primary50: '#db5481', //selection flash on click
+                neutral80: '#ffffff', // title
+                neutral90: '#0000000',
 
-            },
-          })}
-          className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black 
+              },
+            })}
+            className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
           "
-          classNamePrefix="select"
-          onChange={handleModelPipelineChange}
-          defaultValue={dropDownOptions[0]}
-          isDisabled={isDisabled}
-          isClearable={isClearable}
-          isRtl={isRtl}
-          isSearchable={isSearchable}
-          options={dropDownOptions}
-        />
+            classNamePrefix="select"
+            onChange={handleModelPipelineChange}
+            defaultValue={dropDownOptions[0]}
+            isDisabled={isDisabled}
+            isClearable={isClearable}
+            isRtl={isRtl}
+            isSearchable={isSearchable}
+            options={dropDownOptions}
+          />
+        </div>
 
 
         {/* Prompt text input field*/}
@@ -199,30 +201,58 @@ export default function PROMPT() {
           </textarea>
         </div>
 
-        {/* Advanced options expanding accordion*/}
         <div className="flex">
+
+
+
+
+          {/* Advanced options expanding accordion*/}
           <Accordion open={open === 2}>
-            <div onClick={() => handleOpen(2)}
-              className="hover:cursor-pointer text-zinc-400 hover:text-zinc-100
+            <div
+              className="text-xs flex flex-wrap
+              hover:cursor-pointer text-zinc-400 hover:text-zinc-100
             sm:text-xs md:text-xs lg:text-s xl:text-s 2xl:text-md
-            px-1"
+            px-1 py-1"
             >
 
-              <button className="py-1 px-1 rounded text-zinc-400 bg-black hover:text-zinc-100
+              {/*submission button*/}
+              <div className="m-1">
+                <button className="w-24 py-2
+              mx-auto
+              rounded text-white bg-black text-xs
+              sm:text-xs md:text-xs lg:text-xs xl:text-xs 2xl:text-xs
+              border-solid border-2 border-sky-500
+                hover:text-sky-500
+                "
+                  onClick={() => handlePromptSubmission()}>
+                  <div className="">
+                    <div className=""> <SubmissionButton buttonLoading={submissionButtonIsBusy} /> </div>
+                  </div>
+                </button>
+              </div>
+
+              <button
+                onClick={() => handleOpen(2)}
+                className="rounded 
+              text-zinc-400 w-24  m-1
+              border-solid  border-zinc-800 hover:border-zinc-700
+               bg-zinc-800
+               hover:text-zinc-100 border-2 hover:bg-zinc-700 
               ">
-                [ toggle advanced options ]
+                advanced options
               </button>
+
+
+
+
             </div>
-            <AccordionBody className="text-sm text-zinc-200
-            px-1
+            <AccordionBody className="text-sm text-zinc-200 rounded
+            px-1 
           accent-black"
             >
-
               <React.Fragment>
-
                 <div className="flex
-                          text-zinc-400
- ">
+                          text-zinc-400 ">
                   <Checkbox
                     checked={isCustomSeed}
                     onChange={() => setIsCustomSeed((state) => !state)}
@@ -243,11 +273,9 @@ export default function PROMPT() {
                         "
                     id="userSeedInput"
                     onChange={handleSeedChange}
-                    placeholder="provide custom seed"
+                    placeholder="custom seed"
                   />
                 </div>
-
-
                 <div>
                   <Checkbox
                     checked={isHighGuidance}
@@ -256,6 +284,7 @@ export default function PROMPT() {
                     <text className="px-3" > high guidance </text>
                   </Checkbox>
                 </div>
+
 
                 {/*
                 <div>
@@ -296,31 +325,17 @@ export default function PROMPT() {
               </Checkbox>
               <Checkbox checked={isRtl} onChange={() => setIsRtl((state) => !state)}>
                 RTL
-              </Checkbox>
-  */}
+              </Checkbox> */}
               </React.Fragment>
             </AccordionBody>
           </Accordion>
 
-        </div>
 
-        {/*submission button*/}
-        <div className="m-1">
-          <button className="w-24 py-2
-          mx-auto
-          rounded text-white bg-black text-xs
-            sm:text-xs md:text-xs lg:text-xs xl:text-xs 2xl:text-xs
-            border-solid border-2 border-sky-500
-          hover:text-sky-500
-            "
-            onClick={() => handlePromptSubmission()}>
-            <div className="">
-              <div className=""> <SubmissionButton buttonLoading={submissionButtonIsBusy} /> </div>
-            </div>
-          </button>
-        </div>
 
-      </div >
+        </div >
+
+      </div>
+
 
     </Fragment >
   );
