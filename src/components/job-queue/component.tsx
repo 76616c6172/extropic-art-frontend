@@ -15,6 +15,8 @@ let IS_FIRST_PAGE_LOAD = true
 
 // Rebuild the joblist from the api response, react will rebuilds it whenever the api response changes
 const map_jobs_to_list_component = (Job: any) => {
+  console.log("kajsdkhdjsahdkhkfdnhrrehgjergjkergrehgjergergregegr")
+
   const percentage = Job.iteration_status / Job.iteration_max * 100
   return (
     <React.Fragment key={Job.jobid}>
@@ -23,6 +25,7 @@ const map_jobs_to_list_component = (Job: any) => {
     </React.Fragment>
   )
 }
+
 
 // The React component that displays live job queue
 export default function JOB_QUEUE() {
@@ -51,7 +54,26 @@ export default function JOB_QUEUE() {
     }
   }, []) // Empty array so this is only triggered once
 
-  const job_list_componenet = response?.data.map(map_jobs_to_list_component)
+
+
+  const build_job_queue_if_exists = () => {
+    if (response?.data != null) {
+      return (response?.data.map(map_jobs_to_list_component))
+    }
+    // Returns empty queue
+    return (
+      <React.Fragment key={0}>
+        <div className="text-center">
+          no jobs in queue
+        </div>
+      </React.Fragment>
+    )
+  }
+
+  // const job_list_componenet = build_job_queue_if_exists
+
+  var job_list_componenet = build_job_queue_if_exists()
+  // response?.data.map(map_jobs_to_list_component)
 
   return (
     <div className="rounded bg-black

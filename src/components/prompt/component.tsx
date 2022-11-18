@@ -174,7 +174,6 @@ export default function PROMPT() {
           />
         </div>
 
-
         {/* Prompt text input field*/}
         <div className="py-1 ">
           <div>
@@ -202,9 +201,6 @@ export default function PROMPT() {
         </div>
 
         <div className="flex">
-
-
-
 
           {/* Advanced options expanding accordion*/}
           <Accordion open={open === 2}>
