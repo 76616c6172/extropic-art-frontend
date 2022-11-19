@@ -3,13 +3,17 @@
 
 // Outputs jsx for the prompt component of a single job
 export function JOB_PROMPT(props: any) {
+	// Unused tailwind classes
+	// On hover should be text-sinc-100 when on click is implemented
+	// onClick={() => alert("TODO: open jobid: " + props.jobid + " in new tab")} >
+	// hover:cursor-pointer
 	return (
 		<div className=''>
-			<div className="hover:text-zinc-100 hover:cursor-pointer
+			<div className="hover:text-zinc-400 
         text-zinc-400
          sm:text-xs md:text-lg lg:text-lg xl:text-lg 2xl:text-2xl
          px-1"
-				onClick={() => alert("TODO: open jobid: " + props.jobid + " in new tab")} >
+			>
 				{props.prompt}
 			</div>
 		</div>

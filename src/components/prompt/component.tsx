@@ -121,16 +121,21 @@ export default function PROMPT() {
     setModelPipeline(a.value)
   }
 
-  return (
-
-    <Fragment>
+  /*
+  // Display special status message
       <div className="">
         <blockquote className="border-l-4 border-green-500 text-white animate-pulse
           p-4 my-4  dark:bg-black bg-black"
         >
-          STATUS: Prompt submissions are currently disabled.
+          STATUS: GPU is online
         </blockquote>
       </div>
+  */
+
+  return (
+
+    <Fragment>
+
 
 
       <div className="rounded bg-black
@@ -269,7 +274,7 @@ export default function PROMPT() {
                         "
                     id="userSeedInput"
                     onChange={handleSeedChange}
-                    placeholder="custom seed"
+                    placeholder="lock seed"
                   />
                 </div>
                 <div>
@@ -277,7 +282,7 @@ export default function PROMPT() {
                     checked={isHighGuidance}
                     onChange={() => setHighGuidance((state) => !state)}
                   >
-                    <text className="px-3" > high guidance </text>
+                    <text className="px-3" > experimental strictness (aesthetic guidance pre-prompt disabled)</text>
                   </Checkbox>
                 </div>
 

@@ -15,8 +15,6 @@ let IS_FIRST_PAGE_LOAD = true
 
 // Rebuild the joblist from the api response, react will rebuilds it whenever the api response changes
 const map_jobs_to_list_component = (Job: any) => {
-  console.log("kajsdkhdjsahdkhkfdnhrrehgjergjkergrehgjergergregegr")
-
   const percentage = Job.iteration_status / Job.iteration_max * 100
   return (
     <React.Fragment key={Job.jobid}>

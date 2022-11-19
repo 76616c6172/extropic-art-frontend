@@ -6,7 +6,9 @@ import axios from 'axios'
 // Prompt component for each gallery image
 function Prompt(props: any) {
 	return <div className="text-center
-  ">{props.job.prompt}</div>
+  ">{props.job.prompt}
+		<p className="text-zinc-600">{props.job.seed} </p>
+	</div>
 }
 
 export function GALLERY_IMAGE(props: any) {
@@ -16,7 +18,7 @@ export function GALLERY_IMAGE(props: any) {
 	// Set up reactive variable jobMetadData for use by each gallery image element
 	const [jobMetaData, setJobMetaData] = useState(
 		{
-			"jobid": "0", "prompt": "loading..", "job_status": "completed", "iteration_status": 0, "iteration_max": 250, "img_path": "https://extropic.art/api/0/img?jobid=0"
+			"jobid": "0", "seed": "loading..", "prompt": "loading..", "job_status": "completed", "iteration_status": 0, "iteration_max": 250, "img_path": "https://extropic.art/api/0/img?jobid=0"
 		})
 	useEffect(() => {
 		axios.get(JOB_URL + props.jobid).then(resp => {
@@ -27,10 +29,10 @@ export function GALLERY_IMAGE(props: any) {
 
 	//opacity-50 hover:opacity-100 
 	return (
-		<div className="opacity-80 hover:opacity-100" >
+		<div className="opacity-100 hover:opacity-100" >
 
 			<div className='bg-black rounded 
-      shadow-xl  shadow-[#db5481]/25 '
+      shadow-xl  shadow-[#db5481]/25'
 			>
 
 				<a href={IMG_API_URL + props.jobid} target="_blank" rel="noopener noreferrer">
