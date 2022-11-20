@@ -81,7 +81,9 @@ export default function PROMPT() {
   const [isDisabled, setIsDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isRtl, setIsRtl] = useState(false);
-  const [isHighGuidance, setHighGuidance] = useState(false); // low steps low guidance pipeline fast!
+  const [isHighGuidance, setHighGuidance] = useState(false);
+  const [isMakeVariations, setIsMakeVariations] = useState(true);
+  const [isDisablePrePrompt, setDisablePrePrompt] = useState(false);
   const [isUpScale, setUpscale] = useState(false); // upscale pipeline
   const [isCustomSeed, setIsCustomSeed] = useState(false); // upscale pipeline
 
@@ -89,23 +91,46 @@ export default function PROMPT() {
   //const options = ["1", "2", "3"]
 
 
-  const dropDownOptions = [
+  const dropDownOptionsModelPipeline = [
     {
       value: 1,
-      label: "Stable Diffusion (512x512)",
-      display: "Stable Diffusion (512x512)",
+      label: "Stable Diffusion (Midjourney v4 fine tune)",
+      display: "Stable Diffusion (MidJourney v4 Fine tune",
     },
+    /* 
+    // TODO implement vanilla sd and disco diffusion inference pipelines
     {
       value: 2,
-      label: "Stable Diffusion (512x768)",
-      display: "Stable Diffusion (512x768)",
+      label: "Stable Diffusion (1.5)",
+      display: "Stable Diffusion (1.5)",
     },
     {
       value: 3,
-      label: "Stable Diffusion (768x512)",
-      display: "Stable Diffusion (768x512)",
+      label: "Disco Diffusion (5.61)",
+      display: "Stable Diffusion (5.61)",
+    }
+    */
+  ]
+
+  const dropDownOptionsResolution = [
+    {
+      value: 1,
+      label: "512x512",
+      display: "512x512",
+    },
+    {
+      value: 2,
+      label: "512x768",
+      display: "512x768",
+    },
+    {
+      value: 3,
+      label: "768x512",
+      display: "768x512",
     }
   ]
+
+
   // set up stateful user prompt input meta data
   const [prompt, setPrompt] = useState("")
   const [seed, setSeed] = useState("")
@@ -135,6 +160,14 @@ export default function PROMPT() {
   return (
 
     <Fragment>
+
+      <div className="">
+        <blockquote className="border-l-4 border-green-500 text-white animate-pulse
+          p-4 my-4  dark:bg-black bg-black"
+        >
+          STATUS: GPU worker pod offline
+        </blockquote>
+      </div>
 
 
 
@@ -170,12 +203,12 @@ export default function PROMPT() {
           "
             classNamePrefix="select"
             onChange={handleModelPipelineChange}
-            defaultValue={dropDownOptions[0]}
+            defaultValue={dropDownOptionsModelPipeline[0]}
             isDisabled={isDisabled}
             isClearable={isClearable}
             isRtl={isRtl}
             isSearchable={isSearchable}
-            options={dropDownOptions}
+            options={dropDownOptionsModelPipeline}
           />
         </div>
 
@@ -217,33 +250,79 @@ export default function PROMPT() {
             >
 
               {/*submission button*/}
-              <div className="m-1">
-                <button className="w-24 py-2
+              <div className="">
+                <div className="">
+                  <button className="w-24 py-3 m-1
               mx-auto
               rounded text-white bg-black text-xs
               sm:text-xs md:text-xs lg:text-xs xl:text-xs 2xl:text-xs
               border-solid border-2 border-sky-500
                 hover:text-sky-500
                 "
-                  onClick={() => handlePromptSubmission()}>
-                  <div className="">
-                    <div className=""> <SubmissionButton buttonLoading={submissionButtonIsBusy} /> </div>
-                  </div>
-                </button>
+                    onClick={() => handlePromptSubmission()}>
+                    <div className="">
+                      <div className=""> <SubmissionButton buttonLoading={submissionButtonIsBusy} /> </div>
+                    </div>
+                  </button>
+                </div>
               </div>
 
+              <div className="px-0.5"></div>
+
+
+
+              {/*resolution selector dropdown*/}
+              <div className="rounded
+                w-28 m-1
+                border-solid border-zinc-800 hover:border-zinc-700
+                bg-black
+                hover:text-zinc-100 border-2 hover:bg-zinc-70 ">
+                <Select
+                  theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 0,
+                    colors: {
+                      ...theme.colors,
+                      primary: '#db5481',
+                      primary25: '#000000',
+                      text: '#000000',
+                      neutral0: '#000000',
+                      neutral5: '#000000',
+                      neutral10: '#000000',
+                      neutral20: '#000000',
+                      neutral30: '#000000',
+                      primary50: '#db5481', //selection flash on click
+                      neutral80: '#ffffff', // title
+                      neutral90: '#0000000',
+
+                    },
+                  })}
+                  className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
+          "
+                  classNamePrefix="select"
+                  onChange={handleModelPipelineChange}
+                  defaultValue={dropDownOptionsResolution[0]}
+                  isDisabled={isDisabled}
+                  isClearable={isClearable}
+                  isRtl={isRtl}
+                  isSearchable={isSearchable}
+                  options={dropDownOptionsResolution}
+                />
+              </div>
+
+
+
+              {/*advanced options button*/}
               <button
                 onClick={() => handleOpen(2)}
                 className="rounded 
-              text-zinc-400 w-24  m-1
+              text-zinc-300 w-24  m-1
               border-solid  border-zinc-800 hover:border-zinc-700
-               bg-zinc-800
+               bg-black
                hover:text-zinc-100 border-2 hover:bg-zinc-700 
               ">
                 advanced options
               </button>
-
-
 
 
             </div>
@@ -252,11 +331,48 @@ export default function PROMPT() {
           accent-black"
             >
               <React.Fragment>
+
+
+                <Checkbox
+                  checked={isMakeVariations}
+                  onChange={() => {
+                    setIsMakeVariations((state) => !state);
+                  }
+                  }
+                >
+                  <text className="text-zinc-200 px-4">
+                    make variations
+                  </text>
+                </Checkbox>
+
+                <div>
+                  <Checkbox
+                    checked={isDisablePrePrompt}
+                    onChange={() => setDisablePrePrompt((state) => !state)}
+                  >
+                    <text className="px-3" > disable aesthetic pre-prompt </text>
+                  </Checkbox>
+                </div>
+
+                <div>
+                  <Checkbox
+                    checked={isHighGuidance}
+                    onChange={() => setHighGuidance((state) => !state)}
+                  >
+                    <text className="px-3" > experimental high vivid scale/steps </text>
+                  </Checkbox>
+                </div>
+
+
                 <div className="flex
                           text-zinc-400 ">
+
                   <Checkbox
                     checked={isCustomSeed}
-                    onChange={() => setIsCustomSeed((state) => !state)}
+                    onChange={() => {
+                      setIsCustomSeed((state) => !state)
+                    }
+                    }
                   >
                   </Checkbox>
                   <input type="text"
@@ -276,15 +392,9 @@ export default function PROMPT() {
                     onChange={handleSeedChange}
                     placeholder="lock seed"
                   />
+
                 </div>
-                <div>
-                  <Checkbox
-                    checked={isHighGuidance}
-                    onChange={() => setHighGuidance((state) => !state)}
-                  >
-                    <text className="px-3" > experimental strictness (aesthetic guidance pre-prompt disabled)</text>
-                  </Checkbox>
-                </div>
+
 
 
                 {/*
@@ -328,14 +438,18 @@ export default function PROMPT() {
                 RTL
               </Checkbox> */}
               </React.Fragment>
+              <div className="py-0">
+                { /* more options can go here.. */}
+              </div>
             </AccordionBody>
           </Accordion>
-
-
-
         </div >
 
-      </div>
+
+
+
+      </div >
+
 
 
     </Fragment >
