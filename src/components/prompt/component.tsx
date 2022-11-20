@@ -46,6 +46,7 @@ export default function PROMPT() {
     axios.post("https://extropic.art/api/1/jobs",
       {
         model_pipeline: modelPipeline,
+        resolution: resolution,
         prompt: prompt,
         lock_seed: isCustomSeed,
         seed: seed,
@@ -95,7 +96,7 @@ export default function PROMPT() {
     {
       value: 1,
       label: "Stable Diffusion (Midjourney v4 fine tune)",
-      display: "Stable Diffusion (sd1.5 + midjourney v4 fine tune)",
+      display: "Stable Diffusion (Midjourney v4 fine tune)",
     },
     /* 
     // TODO implement vanilla sd and disco diffusion inference pipelines
@@ -135,6 +136,7 @@ export default function PROMPT() {
   const [prompt, setPrompt] = useState("")
   const [seed, setSeed] = useState("")
   const [modelPipeline, setModelPipeline] = useState(1)
+  const [resolution, setResolution] = useState(1)
   // track and save the user provided metadata for job submissions
   const handlePromptChange = (a: any) => {
     setPrompt(a.target.value)
@@ -144,6 +146,9 @@ export default function PROMPT() {
   }
   const handleModelPipelineChange = (a: any) => {
     setModelPipeline(a.value)
+  }
+  const handleResolutionChange = (a: any) => {
+    setResolution(a.value)
   }
 
   /*
@@ -300,7 +305,7 @@ export default function PROMPT() {
                   className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
           "
                   classNamePrefix="select"
-                  onChange={handleModelPipelineChange}
+                  onChange={handleResolutionChange}
                   defaultValue={dropDownOptionsResolution[0]}
                   isDisabled={isDisabled}
                   isClearable={isClearable}
@@ -361,7 +366,7 @@ export default function PROMPT() {
                     checked={isHighGuidance}
                     onChange={() => setHighGuidance((state) => !state)}
                   >
-                    <text className="px-3" > experimental high vivid scale/steps </text>
+                    <text className="px-3" > enable experimental high step count + high guidance scale </text>
                   </Checkbox>
                 </div>
 
