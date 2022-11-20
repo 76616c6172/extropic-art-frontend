@@ -51,6 +51,7 @@ export default function PROMPT() {
         lock_seed: isCustomSeed,
         seed: seed,
         high_guidance: isHighGuidance,
+        pre_prompt: isEnablePrePrompt,
         upscale: isUpScale,
       },
       { headers: headers }
@@ -98,13 +99,14 @@ export default function PROMPT() {
       label: "Stable Diffusion (Midjourney v4 fine tune)",
       display: "Stable Diffusion (Midjourney v4 fine tune)",
     },
-    /* 
-    // TODO implement vanilla sd and disco diffusion inference pipelines
     {
       value: 2,
       label: "Stable Diffusion (1.5)",
       display: "Stable Diffusion (1.5)",
     },
+
+    /* 
+    // TODO implement vanilla sd and disco diffusion inference pipelines
     {
       value: 3,
       label: "Disco Diffusion (5.61)",
@@ -337,14 +339,18 @@ export default function PROMPT() {
             >
               <React.Fragment>
 
-                <div>
-                  <Checkbox
-                    checked={isEnablePrePrompt}
-                    onChange={() => setIsEnablePrePrompt((state) => !state)}
-                  >
-                    <text className="px-3" > enable aesthetic pre-prompt: "mdjrny-v4 style" </text>
-                  </Checkbox>
-                </div>
+                {
+                  modelPipeline == 1 &&
+
+                  <div>
+                    <Checkbox
+                      checked={isEnablePrePrompt}
+                      onChange={() => setIsEnablePrePrompt((state) => !state)}
+                    >
+                      <text className="px-3" > enable aesthetic pre-prompt: "mdjrny-v4 style" </text>
+                    </Checkbox>
+                  </div>
+                }
 
                 { /*}
                 <Checkbox
