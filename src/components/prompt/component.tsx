@@ -83,7 +83,7 @@ export default function PROMPT() {
   const [isRtl, setIsRtl] = useState(false);
   const [isHighGuidance, setHighGuidance] = useState(false);
   const [isMakeVariations, setIsMakeVariations] = useState(true);
-  const [isDisablePrePrompt, setDisablePrePrompt] = useState(false);
+  const [isEnablePrePrompt, setIsEnablePrePrompt] = useState(true);
   const [isUpScale, setUpscale] = useState(false); // upscale pipeline
   const [isCustomSeed, setIsCustomSeed] = useState(false); // upscale pipeline
 
@@ -95,7 +95,7 @@ export default function PROMPT() {
     {
       value: 1,
       label: "Stable Diffusion (Midjourney v4 fine tune)",
-      display: "Stable Diffusion (MidJourney v4 Fine tune",
+      display: "Stable Diffusion (sd1.5 + midjourney v4 fine tune)",
     },
     /* 
     // TODO implement vanilla sd and disco diffusion inference pipelines
@@ -332,7 +332,16 @@ export default function PROMPT() {
             >
               <React.Fragment>
 
+                <div>
+                  <Checkbox
+                    checked={isEnablePrePrompt}
+                    onChange={() => setIsEnablePrePrompt((state) => !state)}
+                  >
+                    <text className="px-3" > enable aesthetic pre-prompt: "mdjrny-v4 style" </text>
+                  </Checkbox>
+                </div>
 
+                { /*}
                 <Checkbox
                   checked={isMakeVariations}
                   onChange={() => {
@@ -344,15 +353,8 @@ export default function PROMPT() {
                     make variations
                   </text>
                 </Checkbox>
+                */ }
 
-                <div>
-                  <Checkbox
-                    checked={isDisablePrePrompt}
-                    onChange={() => setDisablePrePrompt((state) => !state)}
-                  >
-                    <text className="px-3" > disable aesthetic pre-prompt </text>
-                  </Checkbox>
-                </div>
 
                 <div>
                   <Checkbox
