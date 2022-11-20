@@ -11,7 +11,7 @@ import JOB_QUEUE from './components/job-queue/component'
 import PROMPT from './components/prompt/component'
 import axios from 'axios'
 
-document.title = "extropic - art"
+document.title = "Extropic Art"
 //export const LatestJobContext = React.createContext(446);
 
 export var TEST = "meep"
@@ -38,7 +38,8 @@ root.render(
         <div className='py-2'></div>
         <JOB_QUEUE />
       </div>
-      <div className='py-10'> </div>
+
+      <div className='py-20'></div>
 
       {
       /* 
@@ -49,7 +50,6 @@ root.render(
       <div className='py-20'></div>
     */}
 
-      <div className='py-10'></div>
 
       <div className='px-6'>
         <GALLERY />
