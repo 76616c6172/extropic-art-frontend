@@ -99,12 +99,13 @@ export default function PROMPT() {
       label: "Stable Diffusion (Midjourney v4 fine tune)",
       display: "Stable Diffusion (Midjourney v4 fine tune)",
     },
+    /*
     {
       value: 2,
       label: "Stable Diffusion (1.5)",
       display: "Stable Diffusion (1.5)",
     },
-
+    */
     /* 
     // TODO implement vanilla sd and disco diffusion inference pipelines
     {
@@ -167,7 +168,6 @@ export default function PROMPT() {
   return (
 
     <Fragment>
-
 
       <div className="rounded bg-black
     px-1 py-2 shadow-xl  
@@ -363,10 +363,9 @@ export default function PROMPT() {
                     checked={isHighGuidance}
                     onChange={() => setHighGuidance((state) => !state)}
                   >
-                    <text className="px-3" > enable experimental high step count + high guidance scale </text>
+                    <text className="px-3" > enable experimental high step count</text>
                   </Checkbox>
                 </div>
-
 
                 <div className="flex
                           text-zinc-400 ">
