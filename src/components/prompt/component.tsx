@@ -131,6 +131,16 @@ export default function PROMPT() {
       value: 3,
       label: "768x512",
       display: "768x512",
+    },
+    {
+      value: 4,
+      label: "1024x768",
+      display: "1024x768",
+    },
+    {
+      value: 5,
+      label: "768x1024",
+      display: "768x1024",
     }
   ]
 

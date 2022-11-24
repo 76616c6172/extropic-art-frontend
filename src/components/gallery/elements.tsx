@@ -12,7 +12,7 @@ function Prompt(props: any) {
 }
 
 export function GALLERY_IMAGE(props: any) {
-	const IMG_API_URL = "https://extropic.art/api/0/img?type=full?jobid="
+	const IMG_API_URL = "https://extropic.art/api/0/img?type=thumbnail?jobid="
 	const JOB_URL = "https://extropic.art/api/0/jobs?jobid="
 
 	// Set up reactive variable jobMetadData for use by each gallery image element
