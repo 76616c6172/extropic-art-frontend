@@ -10,6 +10,44 @@ import {
 } from "@material-tailwind/react";
 import axios from "axios";
 
+function TopStatusMessage() {
+  return (
+    <div>
+      <div className="">
+        <blockquote className="border-l-4 border-green-500 animate-pulse
+          p-4 my-4  dark:bg-black bg-black"
+        >
+          <p className="text-white">
+            STATUS: public prompt submission is offline
+          </p>
+        </blockquote>
+      </div>
+
+      <div className="">
+
+        <blockquote className="border-2 border-pink-600
+          p-4 my-4  dark:bg-black bg-black"
+        >
+          <div className="text-zinc-100"></div>
+          <p>
+            Hi there! This page has become very popular recently. I'm happy you like it :) </p>
+
+          <p className="py-1"></p>
+
+          <p> However processing your prompts is computationally very intensive - due to recent super high demand I've temporarily disabled public prompt submissions, until I code up some kind of daily usage limit. I should have that working by tomorrow! You can find me on the internet <a className="text-white" href="https://twitter.com/76616c6172/"> here</a>.
+          </p>
+
+          <p className="py-1"></p>
+
+          <p>If you're technical enough you can run the current model on your own GPUs for free! (see <a className="text-white" href="https://huggingface.co/prompthero/openjourney"> this repo</a> on huggingface)</p>
+
+        </blockquote>
+      </div >
+    </div>
+  )
+
+}
+
 export default function PROMPT() {
   const [open, setOpen] = useState(1);
 

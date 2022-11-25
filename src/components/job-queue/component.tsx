@@ -1,4 +1,3 @@
-// CONTAINS THE MAIN EXPORTED REACT COMPONENT OF THIS FOLDER WITH THE SAME NAME
 import React, { useEffect } from 'react'
 // Import helper funcs
 import { useAxios } from './funcs'
@@ -15,7 +14,9 @@ let IS_FIRST_PAGE_LOAD = true
 
 // Rebuild the joblist from the api response, react will rebuilds it whenever the api response changes
 const map_jobs_to_list_component = (Job: any) => {
+  // console.log(Job)
   const percentage = Job.iteration_status / Job.iteration_max * 100
+
 
   if (percentage > 0) {
     return (
@@ -64,14 +65,21 @@ export default function JOB_QUEUE() {
 
 
   const build_job_queue_if_exists = () => {
-    if (response?.data != null) {
-      return (response?.data.map(map_jobs_to_list_component))
+    if (response?.data.queue != null) {
+      return (response?.data.queue.map(map_jobs_to_list_component))
     }
     // Returns empty queue
     return (
       <React.Fragment key={0}>
-        <div className="text-center">
-          no jobs in queue
+        <div className="">
+
+          <div className="text-center text-zinc-300">
+            queue is empty
+          </div>
+
+          <div className="text-center text-zinc-600">
+            {response?.data.freeUsesRemaining} rem
+          </div>
         </div>
       </React.Fragment>
     )
@@ -84,10 +92,28 @@ export default function JOB_QUEUE() {
 
   return (
     <div className="rounded bg-black
-    px-1 py-2 shadow-xl  
     shadow-xl  shadow-[#db5481]/25
     ">
-      {job_list_componenet}
+
+      <div className="center">
+
+        <div className="flex rounded 
+        border-zinc-800 
+        px-2 py-1
+        ">
+
+
+
+          <div className=" text-white"> </div>
+        </div>
+
+
+
+        <div className="px-1 py-2">
+          {job_list_componenet}
+        </div>
+      </div>
+
     </div>
   )
 }
