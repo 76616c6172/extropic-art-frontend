@@ -71,6 +71,7 @@ export default function JOB_QUEUE() {
     // Returns empty queue
     return (
       <React.Fragment key={0}>
+
         <div className="">
 
           <div className="text-center text-zinc-300">
@@ -80,6 +81,7 @@ export default function JOB_QUEUE() {
           <div className="text-center text-zinc-600">
             {response?.data.freeUsesRemaining} rem
           </div>
+
         </div>
       </React.Fragment>
     )
@@ -92,7 +94,7 @@ export default function JOB_QUEUE() {
 
   return (
     <div className="rounded bg-black
-    shadow-xl  shadow-[#db5481]/25
+    shadow-xl  shadow-[#db5481]/90
     ">
 
       <div className="center">
@@ -102,8 +104,6 @@ export default function JOB_QUEUE() {
         px-2 py-1
         ">
 
-
-
           <div className=" text-white"> </div>
         </div>
 
@@ -111,8 +111,12 @@ export default function JOB_QUEUE() {
 
         <div className="px-1 py-2">
           {job_list_componenet}
+
+
         </div>
+
       </div>
+
 
     </div>
   )

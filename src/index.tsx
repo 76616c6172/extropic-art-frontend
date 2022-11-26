@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { Component, useContext, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import './styles/index.css'
 //import reportWebVitals from './reportWebVitals/reportWebVitals';
@@ -11,8 +11,9 @@ import JOB_QUEUE from './components/job-queue/component'
 import PROMPT from './components/prompt/component'
 import axios from 'axios'
 
+// import StarSky from "react-star-sky";
+
 document.title = "Extropic Art"
-//export const LatestJobContext = React.createContext(446);
 
 export var TEST = "meep"
 const API_URL_STATUS_ENDPOINT = "https://extropic.art/api/0/status"
