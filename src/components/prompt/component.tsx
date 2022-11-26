@@ -157,27 +157,27 @@ export default function PROMPT() {
   const dropDownOptionsResolution = [
     {
       value: 1,
-      label: "512x512 Square",
+      label: "512x512 square",
       display: "512x512",
     },
     {
       value: 2,
-      label: "512x768 Portrait",
+      label: "512x768 portrait",
       display: "512x768",
     },
     {
       value: 3,
-      label: "768x512 Landscape",
+      label: "768x512 wide",
       display: "768x512",
     },
     {
       value: 4,
-      label: "1024x512 Ultrawide",
+      label: "1024x512 ultrawide",
       display: "1024x512",
     },
     {
       value: 5,
-      label: "512x1024 Ultrahigh",
+      label: "512x1024 ultrahigh",
       display: "512x1024",
     }
   ]
@@ -222,63 +222,59 @@ export default function PROMPT() {
   shadow-[#db5481]/90
     ">
 
-
         <div className="flex">
 
-          <div className="m-auto
-            pl-2
-          ">model:</div>
-
-          {/* Model pipeline dropdown selection */}
-          {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
-          <div className="min-w-64
-          min-w-[45%]
-          ">
-            <Select
-              theme={(theme) => ({
-                ...theme,
-                borderRadius: 0,
-                colors: {
-                  ...theme.colors,
-                  primary: '#db5481',
-                  primary25: '#000000',
-                  text: '#000000',
-                  neutral0: '#000000',
-                  neutral5: '#000000',
-                  neutral10: '#000000',
-                  neutral20: '#000000',
-                  neutral30: '#000000',
-                  primary50: '#db5481', //selection flash on click
-                  neutral80: '#ffffff', // title
-                  neutral90: '#0000000',
-
-                },
-              })}
-              className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
-          "
-              classNamePrefix="select"
-              onChange={handleModelPipelineChange}
-              defaultValue={dropDownOptionsModelPipeline[0]}
-              isDisabled={isDisabled}
-              isClearable={isClearable}
-              isRtl={isRtl}
-              isSearchable={isSearchable}
-              options={dropDownOptionsModelPipeline}
-            />
-
-          </div>
-
-
-          <div className="bg-black w-full">
-          </div>
-          <div className="m-auto">resolution:</div>
-
-          <div className="">
-            {/*resolution selector dropdown*/}
-            <div className="
-              rounded-b rounded-l 
-          w-24 
+          <div className="flex ">
+            <div className="pl-2 py-[0.4rem] "> model: </div>
+            {/* Model pipeline dropdown selection */}
+            {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
+            <div className="w-36
             ">
+
+              <Select
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary: '#db5481',
+                    primary25: '#000000',
+                    text: '#000000',
+                    neutral0: '#000000',
+                    neutral5: '#000000',
+                    neutral10: '#000000',
+                    neutral20: '#000000',
+                    neutral30: '#000000',
+                    primary50: '#db5481', //selection flash on click
+                    neutral80: '#ffffff', // title
+                    neutral90: '#0000000',
+
+                  },
+                })}
+                className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
+          "
+                classNamePrefix="select"
+                onChange={handleModelPipelineChange}
+                defaultValue={dropDownOptionsModelPipeline[0]}
+                isDisabled={isDisabled}
+                isClearable={isClearable}
+                isRtl={isRtl}
+                isSearchable={isSearchable}
+                options={dropDownOptionsModelPipeline}
+              />
+            </div>
+          </div>
+
+          <div className="w-full"></div>
+
+
+          <div className="flex">
+            <div className="py-[0.4rem] pl-2">
+              res:
+            </div>
+
+            <div className="w-36">
+              {/*resolution selector dropdown*/}
               <Select
                 theme={(theme) => ({
                   ...theme,
@@ -312,7 +308,6 @@ export default function PROMPT() {
               />
             </div>
           </div>
-
 
         </div>
 
@@ -483,10 +478,8 @@ export default function PROMPT() {
         <div className="flex">
           <div className="w-full
             text-zinc-200
-
-            opacity-60
             rounded-bl
-            bg-gradient-to-t from-zinc-800/80 to-black
+            bg-black
           "
 
           ></div>
@@ -503,7 +496,8 @@ export default function PROMPT() {
 
             hover:text-white
             text-zinc-400
-            bg-gradient-to-t from-zinc-800/80 to-black
+            bg-black
+
             hover:bg-gradient-to-t hover:from-[#db5481]/50 
 
               ">
@@ -518,8 +512,7 @@ export default function PROMPT() {
                rounded-r
             hover:text-white
 
-            bg-gradient-to-t from-zinc-800/80 to-black
-
+          bg-black
             hover:bg-gradient-to-t hover:from-[#db5481]/50 
 
 
