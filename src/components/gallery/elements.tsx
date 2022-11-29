@@ -32,7 +32,8 @@ export function GALLERY_IMAGE(props: any) {
 		<div className="opacity-100 hover:opacity-100" >
 
 			<div className='bg-black rounded 
-      shadow-xl  shadow-[#db5481]/25
+      shadow-xl
+  shadow-white/25
 			'
 			>
 

@@ -14,17 +14,17 @@ function TopStatusMessage() {
   return (
     <div>
       <div className="">
-        <blockquote className="border-l-4 border-green-500 animate-pulse
+        <blockquote className="border-l-4 border-white animate-pulse
           p-4 my-4  dark:bg-black bg-black"
         >
           <p className="text-white">
-            STATUS: public prompt submission is offline
+            STATUS: Testing new stable diffusion model.
           </p>
         </blockquote>
       </div>
 
       <div className="">
-
+        {/*
         <blockquote className="border-2 border-pink-600
           p-4 my-4  dark:bg-black bg-black"
         >
@@ -42,6 +42,7 @@ function TopStatusMessage() {
           <p>If you're technical enough you can run the current model on your own GPUs for free! (see <a className="text-white" href="https://huggingface.co/prompthero/openjourney"> this repo</a> on huggingface)</p>
 
         </blockquote>
+  */}
       </div >
     </div>
   )
@@ -67,13 +68,13 @@ export default function PROMPT() {
   const [submissionButtonIsBusy, setSubMissionButtonIsBusy] = useState(false)
   const handlePromptSubmission = () => {
     /*
-    console.log(prompt)
-    console.log("model Pipeline: ", modelPipeline)
-    console.log("use custom seed: ", isCustomSeed)
-    console.log("seed: ", seed)
-    console.log("high guidance: ", isHighGuidance)
-    console.log("upscale: ", isUpScale)
-    */
+      console.log(prompt)
+      console.log("model Pipeline: ", modelPipeline)
+      console.log("use custom seed: ", isCustomSeed)
+      console.log("seed: ", seed)
+      console.log("high guidance: ", isHighGuidance)
+      console.log("upscale: ", isUpScale)
+      */
 
     const headers = {
       'Content-Type': 'application/json',
@@ -103,15 +104,15 @@ export default function PROMPT() {
     /*
     const response = async () => {
       const resp = await axios.post("https://extropic.art/api/1/jobs/",
-        {
-          prompt: prompt
+      {
+        prompt: prompt
         }
       )
       console.log("yo")
       //resp.data.data
       //resp.data.headers['Content-Type']
     }
-    */
+      */
 
 
   }
@@ -132,42 +133,42 @@ export default function PROMPT() {
 
 
   const dropDownOptionsModelPipeline = [
+    /*
     {
       value: 1,
       label: "Stable Diffusion 1.5 (finetuned on midjourney v4)",
       display: "Stable Diffusion 1.5 (finetuned on midjourney v4)",
     },
-    /*
+    */
     {
       value: 2,
-      label: "Stable Diffusion (1.5)",
-      display: "Stable Diffusion (1.5)",
+      label: "Stable Diffusion 2.0",
+      display: "Stable Diffusion 2.0",
     },
-    */
-    /* 
+    /*
     // TODO implement vanilla sd and disco diffusion inference pipelines
     {
-      value: 3,
+        value: 3,
       label: "Disco Diffusion (5.61)",
       display: "Stable Diffusion (5.61)",
     }
-    */
+      */
   ]
 
   const dropDownOptionsResolution = [
     {
       value: 1,
-      label: "512x512 square",
+      label: "512x512 square sm",
       display: "512x512",
     },
     {
       value: 2,
-      label: "512x768 portrait",
+      label: "512x768 portrait sm",
       display: "512x768",
     },
     {
       value: 3,
-      label: "768x512 wide",
+      label: "768x512 wide sm",
       display: "768x512",
     },
     {
@@ -177,9 +178,24 @@ export default function PROMPT() {
     },
     {
       value: 5,
-      label: "512x1024 ultrahigh",
+      label: "512x1024 long",
       display: "512x1024",
-    }
+    },
+    {
+      value: 6,
+      label: "768x768 square lg",
+      display: "768x768",
+    },
+    {
+      value: 7,
+      label: "768x1024 portrait lg",
+      display: "768x1024",
+    },
+    {
+      value: 8,
+      label: "1024x768 wide lg",
+      display: "1024x768",
+    },
   ]
 
 
@@ -187,7 +203,7 @@ export default function PROMPT() {
   const [prompt, setPrompt] = useState("")
   const [seed, setSeed] = useState("")
   const [modelPipeline, setModelPipeline] = useState(1)
-  const [resolution, setResolution] = useState(1)
+  const [resolution, setResolution] = useState(6)
   // track and save the user provided metadata for job submissions
   const handlePromptChange = (a: any) => {
     setPrompt(a.target.value)
@@ -203,7 +219,7 @@ export default function PROMPT() {
   }
 
   /*
-  // Display special status message
+      // Display special status message
       <div className="">
         <blockquote className="border-l-4 border-green-500 text-white animate-pulse
           p-4 my-4  dark:bg-black bg-black"
@@ -211,24 +227,26 @@ export default function PROMPT() {
           STATUS: GPU is online
         </blockquote>
       </div>
-  */
+      */
 
   return (
 
     <Fragment>
 
+      < TopStatusMessage />
+
       <div className="rounded bg-black
     shadow-xl
-  shadow-[#db5481]/90
+  shadow-white/50
     ">
 
         <div className="flex">
 
           <div className="flex ">
-            <div className="pl-2 py-[0.4rem] "> model: </div>
+            <div className="pl-2 py-[0.4rem] "> </div>
             {/* Model pipeline dropdown selection */}
             {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
-            <div className="w-36
+            <div className="w-52
             ">
 
               <Select
@@ -270,10 +288,9 @@ export default function PROMPT() {
 
           <div className="flex">
             <div className="py-[0.4rem] pl-2">
-              res:
             </div>
 
-            <div className="w-36">
+            <div className="w-32">
               {/*resolution selector dropdown*/}
               <Select
                 theme={(theme) => ({
@@ -299,7 +316,7 @@ export default function PROMPT() {
               "
                 classNamePrefix="select"
                 onChange={handleResolutionChange}
-                defaultValue={dropDownOptionsResolution[0]}
+                defaultValue={dropDownOptionsResolution[5]}
                 isDisabled={isDisabled}
                 isClearable={isClearable}
                 isRtl={isRtl}
@@ -358,8 +375,7 @@ export default function PROMPT() {
             <React.Fragment>
 
               {
-                modelPipeline == 1 &&
-
+                modelPipeline == 0 &&
                 <div>
                   <Checkbox
                     checked={isEnablePrePrompt}
@@ -488,6 +504,7 @@ export default function PROMPT() {
 
 
           {/*advanced options button*/}
+          { /* hover:bg-gradient-to-t hover:from-[#db5481]/50  */}
           <button
             onClick={() => handleOpen(2)}
             className=" 
@@ -498,7 +515,6 @@ export default function PROMPT() {
             text-zinc-400
             bg-black
 
-            hover:bg-gradient-to-t hover:from-[#db5481]/50 
 
               ">
             #advanced-options
@@ -513,7 +529,6 @@ export default function PROMPT() {
             hover:text-white
 
           bg-black
-            hover:bg-gradient-to-t hover:from-[#db5481]/50 
 
 
                 "
@@ -553,14 +568,14 @@ function ButtonLoading() {
   )
   /*
   <div>
-    <div className=""> </div>
-    <svg role="status" className="mx-auto
+        <div className=""> </div>
+        <svg role="status" className="mx-auto
     w-4 text-gray-200 animate-spin dark:text-gray-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
-      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2" />
-    </svg>
-  </div>
-  */
+          <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+          <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="#1C64F2" />
+        </svg>
+      </div>
+      */
 }
 
 // Renders prompt submission button when button is ready

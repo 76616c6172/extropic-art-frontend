@@ -72,7 +72,8 @@ export default function JOB_QUEUE() {
     return (
       <React.Fragment key={0}>
 
-        <div className="">
+        <div className="
+        ">
 
           <div className="text-center text-zinc-300">
             queue is empty
@@ -94,7 +95,8 @@ export default function JOB_QUEUE() {
 
   return (
     <div className="rounded bg-black
-    shadow-xl  shadow-[#db5481]/90
+    shadow-xl shadow-white/20
+
     ">
 
       <div className="center">
