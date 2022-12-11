@@ -3,62 +3,39 @@ import ReactDOM from 'react-dom/client'
 import './styles/index.css'
 //import reportWebVitals from './reportWebVitals/reportWebVitals';
 
-// Import React Components
-import NAVBAR from './components/navbar/component'
-import GALLERY from './components/gallery/component'
-import LIVE_LOG_STREAM from './components/live-log-stream/component'
-import JOB_QUEUE from './components/job-queue/component'
-import PROMPT from './components/prompt/component'
+// Components
+import NAVBAR from './components/navbar/index'
+import HERO_INTRO from './components/Hero_intro/index'
+import PROMPT from './components/prompt/index'
+import JOB_QUEUE from './components/job-queue/index'
+import GALLERY from './components/gallery/index'
 import axios from 'axios'
 
-// import StarSky from "react-star-sky";
+const API_URL_STATUS_ENDPOINT = "https://extropic.art/api/0/status"
 
 document.title = "Extropic Art"
-
-export var TEST = "meep"
-const API_URL_STATUS_ENDPOINT = "https://extropic.art/api/0/status"
-var STATUS_RESPONSE: any
 
 // Render the page
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-
 root.render(
   <React.StrictMode>
-    {/* <LatestJobContext.Provider value={446} > */}
-
     {/* 
       <NAVBAR />
-      <LIVE_LOG_STREAM />
     */}
     <div className="py-1 min-w-full max-w-6xl">
-      <div className='py-4'> </div>
-      <div className='py-2 px-5'>
+      <HERO_INTRO />
+      <div className='py-0 px-5'>
         <PROMPT />
-        <div className='py-2'></div>
+        <div className='py-8'></div>
         <JOB_QUEUE />
       </div>
-
-      <div className='py-5'></div>
-
-      {
-      /* 
-      <div className='px-1'>
-        <p>Welcome to project exia. Run state of the art machine learning models in the cloud to generate high resolution images from just text!</p>
-      </div>
-
-      <div className='py-20'></div>
-    */}
-
-
+      <div className='py-8'></div>
       <div className='px-6'>
         <GALLERY />
       </div>
-
     </div>
-
-    {/* </LatestJobContext.Provider> */}
 
   </React.StrictMode >
 );

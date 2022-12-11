@@ -42,7 +42,7 @@ export function PROGRESS_BAR(props: any) {
 			<div className='h-1 w-full bg-black rounded px-1'>
 				<div
 					style={{ width: `${props.percentage}%` }}
-					className={`h-full ${props.percentage < 70 ? 'bg-pink-600' : 'bg-pink-600'}`}>
+					className={`h-full ${props.percentage < 70 ? 'bg-black' : 'bg-black'}`}>
 				</div>
 			</div>
 		)

@@ -14,11 +14,12 @@ function TopStatusMessage() {
   return (
     <div>
       <div className="">
-        <blockquote className="border-l-4 border-white animate-pulse
+        <blockquote className="border-l-4  animate-pulse
+        border-[#db5481]
           p-4 my-4  dark:bg-black bg-black"
         >
           <p className="text-white">
-            STATUS: Testing new stable diffusion model.
+            STATUS: Temporarily reverted back to SD 1.5 (Mj Finetune)
           </p>
         </blockquote>
       </div>
@@ -128,24 +129,25 @@ export default function PROMPT() {
   const [isUpScale, setUpscale] = useState(false); // upscale pipeline
   const [isCustomSeed, setIsCustomSeed] = useState(false); // upscale pipeline
 
+  const steps = [10, 20, 30, 40, 50];
+
+
   //const options = ["1", "2", "3"]
   //const options = ["1", "2", "3"]
 
 
   const dropDownOptionsModelPipeline = [
-    /*
     {
       value: 1,
       label: "Stable Diffusion 1.5 (finetuned on midjourney v4)",
       display: "Stable Diffusion 1.5 (finetuned on midjourney v4)",
     },
-    */
+    /*
     {
       value: 2,
       label: "Stable Diffusion 2.0",
       display: "Stable Diffusion 2.0",
     },
-    /*
     // TODO implement vanilla sd and disco diffusion inference pipelines
     {
         value: 3,
@@ -201,9 +203,10 @@ export default function PROMPT() {
 
   // set up stateful user prompt input meta data
   const [prompt, setPrompt] = useState("")
-  const [seed, setSeed] = useState("")
-  const [modelPipeline, setModelPipeline] = useState(1)
-  const [resolution, setResolution] = useState(6)
+  const [seed, setSeed] = useState("enter seed number..")
+  const [modelPipeline, setModelPipeline] = useState(0)
+  const [resolution, setResolution] = useState(0)
+  const [x_res, setX_res] = useState(steps[0]);
   // track and save the user provided metadata for job submissions
   const handlePromptChange = (a: any) => {
     setPrompt(a.target.value)
@@ -217,6 +220,11 @@ export default function PROMPT() {
   const handleResolutionChange = (a: any) => {
     setResolution(a.value)
   }
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setX_res(Number(event.target.value))
+  };
+
 
   /*
       // Display special status message
@@ -233,11 +241,10 @@ export default function PROMPT() {
 
     <Fragment>
 
-      < TopStatusMessage />
 
       <div className="rounded bg-black
     shadow-xl
-  shadow-white/50
+    shadow-indigo-600/25
     ">
 
         <div className="flex">
@@ -255,7 +262,7 @@ export default function PROMPT() {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary: '#db5481',
+                    primary: '#4F46E5',
                     primary25: '#000000',
                     text: '#000000',
                     neutral0: '#000000',
@@ -263,7 +270,7 @@ export default function PROMPT() {
                     neutral10: '#000000',
                     neutral20: '#000000',
                     neutral30: '#000000',
-                    primary50: '#db5481', //selection flash on click
+                    primary50: '#4F46E5', //selection flash on click
                     neutral80: '#ffffff', // title
                     neutral90: '#0000000',
 
@@ -298,7 +305,7 @@ export default function PROMPT() {
                   borderRadius: 0,
                   colors: {
                     ...theme.colors,
-                    primary: '#db5481',
+                    primary: '#4F46E5',
                     primary25: '#000000',
                     text: '#000000',
                     neutral0: '#000000',
@@ -306,7 +313,7 @@ export default function PROMPT() {
                     neutral10: '#000000',
                     neutral20: '#000000',
                     neutral30: '#000000',
-                    primary50: '#db5481', //selection flash on click
+                    primary50: '#4F46E5', //selection flash on click
                     neutral80: '#ffffff', // title
                     neutral90: '#0000000',
 
@@ -316,7 +323,7 @@ export default function PROMPT() {
               "
                 classNamePrefix="select"
                 onChange={handleResolutionChange}
-                defaultValue={dropDownOptionsResolution[5]}
+                defaultValue={dropDownOptionsResolution[0]}
                 isDisabled={isDisabled}
                 isClearable={isClearable}
                 isRtl={isRtl}
@@ -369,12 +376,11 @@ export default function PROMPT() {
 
 
           <AccordionBody className="text-sm text-zinc-200 rounded
-            px-1 
           accent-black"
           >
             <React.Fragment>
 
-              {
+              {/*
                 modelPipeline == 0 &&
                 <div>
                   <Checkbox
@@ -384,6 +390,7 @@ export default function PROMPT() {
                     <text className="px-3" > enable aesthetic pre-prompt: "mdjrny-v4 style" </text>
                   </Checkbox>
                 </div>
+                */
               }
 
               { /*}
@@ -401,6 +408,10 @@ export default function PROMPT() {
                 */ }
 
 
+
+
+
+              { /*
               <div>
                 <Checkbox
                   checked={isHighGuidance}
@@ -409,36 +420,41 @@ export default function PROMPT() {
                   <text className="px-3" > enable experimental high step count</text>
                 </Checkbox>
               </div>
+              */}
 
               <div className="flex
                           text-zinc-400 ">
 
-                <Checkbox
-                  checked={isCustomSeed}
-                  onChange={() => {
-                    setIsCustomSeed((state) => !state)
-                  }
-                  }
-                >
-                </Checkbox>
-                <input type="text"
-                  className="
-                    			text-xs
-                          form-control
-                          block
-                          px-1
-                          bg-black bg-clip-padding
-                          border border-solid border-zinc-400
-                          rounded
-                          transition
-                          ease-in-out
-                          focus:text-gray-200 focus:bg-black focus:border-zinc-200 focus:outline-none
-                        "
-                  id="userSeedInput"
-                  onChange={handleSeedChange}
-                  placeholder="lock seed"
-                />
+                <div className="
+                hover:cursor-pointer
+                px-2"
+                  onClick={() => { setIsCustomSeed(!isCustomSeed) }} >
+                  {isCustomSeed ? <div className="text-white">seed locked: </div> : <div>seed: random </div>}
 
+                </div>
+
+
+                <div>
+                  {isCustomSeed ?
+
+                    <input type="text"
+                      className="
+                form-control
+                block
+                bg-black bg-clip-padding
+                hover:border hover:border-solid border-zinc-400
+                rounded
+                transition
+                ease-in-out
+                focus:text-gray-200 focus:bg-black focus:border-zinc-200 focus:outline-none
+                "
+                      id="userSeedInput"
+                      onChange={handleSeedChange}
+                      placeholder={seed}
+                    />
+                    : null
+                  }
+                </div>
               </div>
 
 
@@ -486,6 +502,7 @@ export default function PROMPT() {
             </React.Fragment>
             <div className="py-0">
               { /* more options can go here.. */}
+
             </div>
           </AccordionBody>
         </Accordion>
@@ -522,16 +539,10 @@ export default function PROMPT() {
 
           {/*submission button*/}
           <div className="w-28">
-            <button className="w-20 py-2
-            text-zinc-400
-              w-24 min-w-fit 
-               rounded-r
-            hover:text-white
-
-          bg-black
-
-
-                "
+            <button className="min-w-fit rounded-r
+             w-20 py-2
+             text-zinc-400 bg-black
+             hover:text-white"
               onClick={() => handlePromptSubmission()}>
               <div className="">
                 <div className=""> <SubmissionButton buttonLoading={submissionButtonIsBusy} /> </div>

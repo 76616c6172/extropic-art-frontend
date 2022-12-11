@@ -17,19 +17,19 @@ const map_jobs_to_list_component = (Job: any) => {
   // console.log(Job)
   const percentage = Job.iteration_status / Job.iteration_max * 100
 
+  // <PROGRESS_BAR job_status={Job.job_status} percentage={percentage} pulse={true} />
+  //<PROGRESS_BAR job_status={Job.job_status} percentage={percentage} pulse={false} />
 
   if (percentage > 0) {
     return (
       <React.Fragment key={Job.jobid}>
         <JOB_PROMPT prompt={Job.prompt} jobid={Job.jobid} pulse={true} />
-        <PROGRESS_BAR job_status={Job.job_status} percentage={percentage} pulse={true} />
       </React.Fragment>
     )
   }
   return (
     <React.Fragment key={Job.jobid}>
       <JOB_PROMPT prompt={Job.prompt} jobid={Job.jobid} percentage={percentage} pulse={false} />
-      <PROGRESS_BAR job_status={Job.job_status} percentage={percentage} pulse={false} />
     </React.Fragment>
   )
 }
@@ -72,8 +72,8 @@ export default function JOB_QUEUE() {
     return (
       <React.Fragment key={0}>
 
-        <div className="
-        ">
+        <div className="text-lg"
+        >
 
           <div className="text-center text-zinc-300">
             queue is empty
@@ -84,7 +84,7 @@ export default function JOB_QUEUE() {
           </div>
 
         </div>
-      </React.Fragment>
+      </React.Fragment >
     )
   }
 
@@ -94,9 +94,7 @@ export default function JOB_QUEUE() {
   // response?.data.map(map_jobs_to_list_component)
 
   return (
-    <div className="rounded bg-black
-    shadow-xl shadow-white/20
-
+    <div className="
     ">
 
       <div className="center">

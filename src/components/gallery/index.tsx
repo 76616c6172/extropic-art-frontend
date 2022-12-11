@@ -7,6 +7,12 @@ import { useAxios } from "./funcs"
 import { Delay } from "./funcs"
 import axios from 'axios'
 
+import {
+  Accordion,
+  AccordionHeader,
+  AccordionBody,
+} from "@material-tailwind/react";
+
 import { GALLERY_IMAGE } from './elements'
 
 const URL = "https://extropic.art/api/1"

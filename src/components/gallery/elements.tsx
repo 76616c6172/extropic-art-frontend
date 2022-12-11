@@ -1,14 +1,75 @@
 import React, { useState, useEffect, SetStateAction, useContext, useReducer } from 'react'
 import axios from 'axios'
 
+import {
+	Accordion,
+	AccordionHeader,
+	AccordionBody,
+} from "@material-tailwind/react";
+
 // Emits one gallery image element, displaying both the picture and the corresponding prompt
 // TODO: should display seed too!
 // Prompt component for each gallery image
 function Prompt(props: any) {
-	return <div className="text-center
-  ">{props.job.prompt}
-		<p className="text-zinc-600">{props.job.seed} </p>
+
+	const [open, setOpen] = useState(1);
+
+	const handleOpen = (value: any) => {
+		setOpen(open === value ? 0 : value);
+	};
+
+	return <div>
+
+
+
+		<div className="text-center"
+		>
+			{props.job.prompt}
+			<p className="text-zinc-600">
+				{props.job.seed} </p>
+		</div>
+
+		{/* expanding accordion*/}
+		<Accordion open={open === 2}>
+			<div
+				className="text-center
+              hover:cursor-pointer text-zinc-400 
+            sm:text-lg md:text-lg lg:text-lg xl:text-s 2xl:text-lg
+            px-1 py-0"
+			>
+			</div>
+
+			<AccordionBody className="
+            px-1 
+          accent-black">
+				<p className="text-zinc-500 mx-auto  text-base">status: {props.job.job_status} </p>
+			</AccordionBody>
+		</Accordion>
+
+
+		{/*
+		<div className="flex">
+			<button
+				onClick={() => handleOpen(2)}
+				className=" 
+              min-w-max
+ 							mx-auto
+							center
+            hover:text-zinc-200
+            text-zinc-600
+            bg-black
+						px-2
+
+
+              ">
+				#
+			</button>
 	</div>
+			*/}
+
+	</div >
+
+
 }
 
 export function GALLERY_IMAGE(props: any) {
@@ -33,7 +94,7 @@ export function GALLERY_IMAGE(props: any) {
 
 			<div className='bg-black rounded 
       shadow-xl
-  shadow-white/25
+    shadow-indigo-500/25
 			'
 			>
 
@@ -45,13 +106,14 @@ export function GALLERY_IMAGE(props: any) {
 				</a>
 
 				<div className="px-1 py-1 rounded
-          shadow-xl  shadow-[#db5481]/10
+    shadow-indigo-600/10
+          shadow-xl  
           bg-black"> <Prompt job={jobMetaData} />
 				</div>
 
 			</div>
 
-			<div className="py-4 bg-transparent"></div>
+			<div className="py-8 bg-transparent"></div>
 		</div >
 	)
 }
