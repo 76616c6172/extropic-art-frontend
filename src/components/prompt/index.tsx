@@ -251,9 +251,10 @@ export default function PROMPT() {
 
           <div className="flex ">
             <div className="pl-2 py-[0.4rem] "> </div>
+
             {/* Model pipeline dropdown selection */}
             {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
-            <div className="w-max
+            <div className="w-52
             ">
 
               <Select
@@ -480,7 +481,7 @@ export default function PROMPT() {
 
         <div className="flex">
 
-          <div className="w-96">
+          <div className="w-48">
             {/*resolution selector dropdown*/}
             <Select
               theme={(theme) => ({
