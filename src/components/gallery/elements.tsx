@@ -19,10 +19,7 @@ function Prompt(props: any) {
 	};
 
 	return <div>
-
-
-
-		<div className="text-center"
+		<div className="text-center break-words"
 		>
 			{props.job.prompt}
 			<p className="text-zinc-600">
@@ -100,15 +97,13 @@ export function GALLERY_IMAGE(props: any) {
 
 				<a href={IMG_API_URL + props.jobid} target="_blank" rel="noopener noreferrer">
 					<img className='mx-auto justify-center
-          hover:cursor-pointer'
+          							hover:cursor-pointer'
 						/* onClick={() => alert(props.jobid)} */
 						src={IMG_API_URL + props.jobid} />
 				</a>
 
-				<div className="px-1 py-1 rounded
-    shadow-indigo-600/10
-          shadow-xl  
-          bg-black"> <Prompt job={jobMetaData} />
+				<div className="px-1 py-1 rounded shadow-indigo-600/10 shadow-xl  
+          			bg-black"> <Prompt job={jobMetaData} />
 				</div>
 
 			</div>
