@@ -139,15 +139,15 @@ export default function PROMPT() {
   const dropDownOptionsModelPipeline = [
     {
       value: 1,
-      label: "Stable Diffusion 1.5 (finetuned on midjourney v4)",
-      display: "Stable Diffusion 1.5 (finetuned on midjourney v4)",
+      label: "Stable Diffusion 1.5 (Openjourney)",
+      display: "Stable Diffusion 1.5 (Openjourney)",
     },
-    /*
     {
       value: 2,
-      label: "Stable Diffusion 2.0",
-      display: "Stable Diffusion 2.0",
+      label: "Stable Diffusion 2.1",
+      display: "Stable Diffusion 2.1",
     },
+    /*
     // TODO implement vanilla sd and disco diffusion inference pipelines
     {
         value: 3,
@@ -253,7 +253,7 @@ export default function PROMPT() {
             <div className="pl-2 py-[0.4rem] "> </div>
             {/* Model pipeline dropdown selection */}
             {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
-            <div className="w-52
+            <div className="w-max
             ">
 
               <Select
@@ -297,40 +297,6 @@ export default function PROMPT() {
             <div className="py-[0.4rem] pl-2">
             </div>
 
-            <div className="w-32">
-              {/*resolution selector dropdown*/}
-              <Select
-                theme={(theme) => ({
-                  ...theme,
-                  borderRadius: 0,
-                  colors: {
-                    ...theme.colors,
-                    primary: '#4F46E5',
-                    primary25: '#000000',
-                    text: '#000000',
-                    neutral0: '#000000',
-                    neutral5: '#000000',
-                    neutral10: '#000000',
-                    neutral20: '#000000',
-                    neutral30: '#000000',
-                    primary50: '#4F46E5', //selection flash on click
-                    neutral80: '#ffffff', // title
-                    neutral90: '#0000000',
-
-                  },
-                })}
-                className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
-              "
-                classNamePrefix="select"
-                onChange={handleResolutionChange}
-                defaultValue={dropDownOptionsResolution[0]}
-                isDisabled={isDisabled}
-                isClearable={isClearable}
-                isRtl={isRtl}
-                isSearchable={isSearchable}
-                options={dropDownOptionsResolution}
-              />
-            </div>
           </div>
 
         </div>
@@ -362,6 +328,8 @@ export default function PROMPT() {
             placeholder=" > _ ">
           </textarea>
         </div>
+
+
 
 
         {/* Advanced options expanding accordion*/}
@@ -504,11 +472,49 @@ export default function PROMPT() {
               { /* more options can go here.. */}
 
             </div>
+
+
           </AccordionBody>
         </Accordion>
 
 
         <div className="flex">
+
+          <div className="w-96">
+            {/*resolution selector dropdown*/}
+            <Select
+              theme={(theme) => ({
+                ...theme,
+                borderRadius: 0,
+                colors: {
+                  ...theme.colors,
+                  primary: '#4F46E5',
+                  primary25: '#000000',
+                  text: '#000000',
+                  neutral0: '#000000',
+                  neutral5: '#000000',
+                  neutral10: '#000000',
+                  neutral20: '#000000',
+                  neutral30: '#000000',
+                  primary50: '#4F46E5', //selection flash on click
+                  neutral80: '#0000000', // title
+                  neutral90: '#0000000',
+
+                },
+              })}
+              className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
+              "
+              classNamePrefix="select"
+              onChange={handleResolutionChange}
+              defaultValue={dropDownOptionsResolution[0]}
+              isDisabled={isDisabled}
+              isClearable={isClearable}
+              isRtl={isRtl}
+              isSearchable={isSearchable}
+              options={dropDownOptionsResolution}
+            />
+          </div>
+
           <div className="w-full
             text-zinc-200
             rounded-bl
