@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-
 // Helper function to provide a sleep time interval for the inifinite query loop in continouslyRefreshJobQueue()
 export function Delay(ms: number) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 
 // Function for making API requests with axios
 // for usage examples see: https://blog.sreejit.dev/custom-axios-hook-useaxios-in-typescript-react

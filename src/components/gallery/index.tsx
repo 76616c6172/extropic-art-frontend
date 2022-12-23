@@ -1,6 +1,3 @@
-// CONTAINS THE MAIN EXPORTED REACT COMPONENT OF THIS FOLDER WITH THE SAME NAME
-// TODO: CLEAN THIS CODE
-
 import React, { useState, useEffect, SetStateAction, useContext, useReducer } from 'react'
 import { Waypoint } from "react-waypoint"
 import { useAxios } from "./funcs"
@@ -57,6 +54,7 @@ function Live_Gallery(): JSX.Element {
           DID_SET_NEWEST_JOB = true
         }
 
+
         if (DID_SET_NEWEST_JOB && (old_newest_completed_job != live_newest_completed_job)) {
 
           // Push the newly completed jobs to the live gallery element
@@ -84,17 +82,14 @@ function Live_Gallery(): JSX.Element {
     if (LIVE_GAL_NOT_FIRED_LOOP) {
       continouslyRefreshJobQueue()
       LIVE_GAL_NOT_FIRED_LOOP = false
-      // set NEWEST_COMPLETED_JOB_ON_FIRST_LOAD
-      //OLD_RESPONSE = response?.data
     }
     return
   }, []) // Empty array so this only happens on first page load and not every time the component reloads
 
-  // BIG
-  // Image list related
+  // the gallery is actually two components, one that is updated by changes in the queue and one that is based on the status
   const [dynamicImgList, setDyanmicImgList] = useState([
     {
-      id: 0, //starting valuej
+      id: 0, //starting value
       jobid: "0", //placeholder
     },
   ])
@@ -198,7 +193,6 @@ export default function GALLERY() {
       </div>
     );
   }
-
   return (
     <div>
       < Live_Gallery />

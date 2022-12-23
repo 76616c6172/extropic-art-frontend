@@ -11,62 +11,37 @@ import {
 // TODO: should display seed too!
 // Prompt component for each gallery image
 function Prompt(props: any) {
-
 	const [open, setOpen] = useState(1);
-
 	const handleOpen = (value: any) => {
 		setOpen(open === value ? 0 : value);
 	};
 
-	return <div>
-		<div className="text-center break-words"
-		>
-			{props.job.prompt}
-			<p className="text-zinc-600">
-				{props.job.seed} </p>
-		</div>
-
-		{/* expanding accordion*/}
-		<Accordion open={open === 2}>
-			<div
-				className="text-center
-              hover:cursor-pointer text-zinc-400 
-            sm:text-lg md:text-lg lg:text-lg xl:text-s 2xl:text-lg
-            px-1 py-0"
-			>
+	return (
+		<div>
+			<div className="text-center break-words" >
+				{props.job.prompt}
+				<p className="text-zinc-600">
+					{props.job.seed}
+				</p>
 			</div>
 
-			<AccordionBody className="
-            px-1 
-          accent-black">
-				<p className="text-zinc-500 mx-auto  text-base">status: {props.job.job_status} </p>
-			</AccordionBody>
-		</Accordion>
+			<Accordion open={open === 2}>
+				<div
+					className="text-center
+              		hover:cursor-pointer text-zinc-400 
+            		sm:text-lg md:text-lg lg:text-lg xl:text-s 2xl:text-lg
+            		px-1 py-0"
+				>
+				</div>
 
-
-		{/*
-		<div className="flex">
-			<button
-				onClick={() => handleOpen(2)}
-				className=" 
-              min-w-max
- 							mx-auto
-							center
-            hover:text-zinc-200
-            text-zinc-600
-            bg-black
-						px-2
-
-
-              ">
-				#
-			</button>
-	</div>
-			*/}
-
-	</div >
-
-
+				<AccordionBody className=" px-1 accent-black">
+					<p className="text-zinc-500 mx-auto  text-base">
+						status: {props.job.job_status}
+					</p>
+				</AccordionBody>
+			</Accordion>
+		</div >
+	)
 }
 
 export function GALLERY_IMAGE(props: any) {
@@ -94,7 +69,6 @@ export function GALLERY_IMAGE(props: any) {
     shadow-indigo-500/25
 			'
 			>
-
 				<a href={IMG_API_URL + props.jobid} target="_blank" rel="noopener noreferrer">
 					<img className='mx-auto justify-center
           							hover:cursor-pointer'

@@ -50,7 +50,7 @@ function TopStatusMessage() {
 
 }
 
-export default function PROMPT() {
+export default function Prompt() {
   const [open, setOpen] = useState(1);
 
   const handleOpen = (value: any) => {
@@ -67,16 +67,20 @@ export default function PROMPT() {
 
 
   const [submissionButtonIsBusy, setSubMissionButtonIsBusy] = useState(false)
-  const handlePromptSubmission = () => {
-    /*
-      console.log(prompt)
-      console.log("model Pipeline: ", modelPipeline)
-      console.log("use custom seed: ", isCustomSeed)
-      console.log("seed: ", seed)
-      console.log("high guidance: ", isHighGuidance)
-      console.log("upscale: ", isUpScale)
-      */
+  const [isClearable, setIsClearable] = useState(false)
+  const [isSearchable, setIsSearchable] = useState(true)
+  const [isDisabled, setIsDisabled] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isRtl, setIsRtl] = useState(false)
+  const [isHighGuidance, setHighGuidance] = useState(false)
+  const [isMakeVariations, setIsMakeVariations] = useState(true)
+  const [isEnablePrePrompt, setIsEnablePrePrompt] = useState(true)
+  const [isUpScale, setUpscale] = useState(false)
+  const [isCustomSeed, setIsCustomSeed] = useState(false)
+  const steps = [10, 20, 30, 40, 50]
 
+
+  const handlePromptSubmission = () => {
     const headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -101,40 +105,7 @@ export default function PROMPT() {
       console.log(err)
       setSubMissionButtonIsBusy(false)
     })
-
-    /*
-    const response = async () => {
-      const resp = await axios.post("https://extropic.art/api/1/jobs/",
-      {
-        prompt: prompt
-        }
-      )
-      console.log("yo")
-      //resp.data.data
-      //resp.data.headers['Content-Type']
-    }
-      */
-
-
   }
-
-  const [isClearable, setIsClearable] = useState(false);
-  const [isSearchable, setIsSearchable] = useState(true);
-  const [isDisabled, setIsDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isRtl, setIsRtl] = useState(false);
-  const [isHighGuidance, setHighGuidance] = useState(false);
-  const [isMakeVariations, setIsMakeVariations] = useState(true);
-  const [isEnablePrePrompt, setIsEnablePrePrompt] = useState(true);
-  const [isUpScale, setUpscale] = useState(false); // upscale pipeline
-  const [isCustomSeed, setIsCustomSeed] = useState(false); // upscale pipeline
-
-  const steps = [10, 20, 30, 40, 50];
-
-
-  //const options = ["1", "2", "3"]
-  //const options = ["1", "2", "3"]
-
 
   const dropDownOptionsModelPipeline = [
     {
@@ -148,7 +119,6 @@ export default function PROMPT() {
       display: "Stable Diffusion 2.1",
     },
     /*
-    // TODO implement vanilla sd and disco diffusion inference pipelines
     {
         value: 3,
       label: "Disco Diffusion (5.61)",
@@ -207,6 +177,7 @@ export default function PROMPT() {
   const [modelPipeline, setModelPipeline] = useState(0)
   const [resolution, setResolution] = useState(0)
   const [x_res, setX_res] = useState(steps[0]);
+
   // track and save the user provided metadata for job submissions
   const handlePromptChange = (a: any) => {
     setPrompt(a.target.value)
@@ -480,6 +451,7 @@ export default function PROMPT() {
 
 
         <div className="flex">
+
 
           <div className="w-48">
             {/*resolution selector dropdown*/}

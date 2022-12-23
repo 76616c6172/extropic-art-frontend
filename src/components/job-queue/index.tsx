@@ -14,11 +14,7 @@ let IS_FIRST_PAGE_LOAD = true
 
 // Rebuild the joblist from the api response, react will rebuilds it whenever the api response changes
 const map_jobs_to_list_component = (Job: any) => {
-  // console.log(Job)
   const percentage = Job.iteration_status / Job.iteration_max * 100
-
-  // <PROGRESS_BAR job_status={Job.job_status} percentage={percentage} pulse={true} />
-  //<PROGRESS_BAR job_status={Job.job_status} percentage={percentage} pulse={false} />
 
   if (percentage > 0) {
     return (
@@ -34,11 +30,8 @@ const map_jobs_to_list_component = (Job: any) => {
   )
 }
 
-
 // The React component that displays live job queue
 export default function JOB_QUEUE() {
-
-  // Set up custom Axios hook for making API requests to the api/0/queue endpoint
   const { response, loading, error, sendRequest } = useAxios({
     method: "GET",
     url: `${URL}/queue`,
@@ -88,36 +81,22 @@ export default function JOB_QUEUE() {
     )
   }
 
-  // const job_list_componenet = build_job_queue_if_exists
-
   var job_list_componenet = build_job_queue_if_exists()
-  // response?.data.map(map_jobs_to_list_component)
 
   return (
     <div className="
     ">
-
       <div className="center">
-
         <div className="flex rounded 
         border-zinc-800 
         px-2 py-1
         ">
-
           <div className=" text-white"> </div>
         </div>
-
-
-
         <div className="px-1 py-2">
           {job_list_componenet}
-
-
         </div>
-
       </div>
-
-
     </div>
   )
 }
