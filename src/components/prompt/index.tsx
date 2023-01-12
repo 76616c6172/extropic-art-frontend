@@ -453,7 +453,7 @@ export default function Prompt() {
         <div className="flex">
 
 
-          <div className="w-48">
+          <div className="w-full">
             {/*resolution selector dropdown*/}
             <Select
               theme={(theme) => ({
@@ -488,16 +488,7 @@ export default function Prompt() {
             />
           </div>
 
-          <div className="w-full
-            text-zinc-200
-            rounded-bl
-            bg-black
-          "
-
-          ></div>
-
-
-
+          <div className="w-full text-zinc-200 rounded-bl bg-black " ></div>
 
           {/*advanced options button*/}
           { /* hover:bg-gradient-to-t hover:from-[#db5481]/50  */}
@@ -513,7 +504,7 @@ export default function Prompt() {
 
 
               ">
-            #advanced-options
+            #options
           </button>
 
           {/*submission button*/}

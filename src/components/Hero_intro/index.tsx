@@ -88,14 +88,15 @@ export default function HERO_INTRO() {
           <div className="py-28"></div>
         </div>
 
-
         :
+
         <div className="rounded 
           px-2
+          text-xs
           sm:text-xs md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl">
           {/* autoscale based on screensize */}
           <div className="py-24"></div>
-          <div className="px-1 text-3xl font-bold 
+          <div className="px-1 text-xl font-bold 
             bg-clip-text
             text-transparent
             bg-gradient-to-tl from-indigo-600 to-blue-400
