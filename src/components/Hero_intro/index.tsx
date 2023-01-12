@@ -53,7 +53,7 @@ export default function HERO_INTRO() {
             bg-gradient-to-tl from-indigo-600 to-blue-400
             drop-shadow-lg
             shadow-white" >
-                Harness the power of AI to generate stunning original images from just text.
+                Harness the power of AI to generate stunning original images from text.
               </div>
               <div className="py-2"></div>
 
@@ -102,7 +102,7 @@ export default function HERO_INTRO() {
             bg-gradient-to-tl from-indigo-600 to-blue-400
             drop-shadow-lg
             shadow-white" >
-            Harness the power of AI to generate stunning original images from just text.
+            Harness the power of AI to generate stunning original images from text.
           </div>
           <div className="py-2"></div>
 

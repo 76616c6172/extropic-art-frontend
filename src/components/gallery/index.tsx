@@ -43,6 +43,8 @@ function Live_Gallery(): JSX.Element {
   const continouslyRefreshJobQueue = async () => {
     while (true) {
 
+      // TODO: change this to check the queue endpoint instead of status!
+
       axios.get(URL + "/status").then((result) => {
         OLD_NEWEST_COMPLETED_JOB = LIVE_NEWEST_COMPLETED_JOB
         LIVE_NEWEST_COMPLETED_JOB = result.data.newest_completed_job
