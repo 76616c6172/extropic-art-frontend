@@ -60,7 +60,6 @@ function Live_Gallery(): JSX.Element {
           // Push the newly completed jobs to the live gallery element
           for (var i = live_newest_completed_job; i > old_newest_completed_job; i--) {
             axios.get(JOBS_API_URL + i.toString()).then((result) => {
-              console.log(result.data)
               if (result.data.job_status == "completed") {
                 update_img_list((i + 1).toString())
                 forcefully_update_the_live_gallery_component()

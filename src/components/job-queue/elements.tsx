@@ -11,9 +11,12 @@ export function JOB_PROMPT(props: any) {
 		return (
 			<div className=''>
 				<div className="animate-pulse
-        text-zinc-100
+            text-transparent
+			font-bold
+            bg-clip-text
+            bg-gradient-to-tl from-indigo-600 to-blue-400
          sm:text-xs md:text-lg lg:text-lg xl:text-lg 2xl:text-2xl
-         px-1"
+         px-1 py-1"
 				>
 					{props.prompt}
 				</div>
@@ -23,9 +26,10 @@ export function JOB_PROMPT(props: any) {
 	return (
 		<div className=''>
 			<div className="
-        text-zinc-400
+		text-zinc-400/80
+            text-opacity-96
          sm:text-xs md:text-lg lg:text-lg xl:text-lg 2xl:text-2xl
-         px-1"
+         px-1 py-1"
 			>
 				{props.prompt}
 			</div>
