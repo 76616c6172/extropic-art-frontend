@@ -20,12 +20,14 @@ const map_jobs_to_list_component = (Job: any) => {
     return (
       <React.Fragment key={Job.jobid}>
         <JOB_PROMPT prompt={Job.prompt} jobid={Job.jobid} pulse={true} />
+        <div className="py-3"></div>
       </React.Fragment>
     )
   }
   return (
     <React.Fragment key={Job.jobid}>
       <JOB_PROMPT prompt={Job.prompt} jobid={Job.jobid} percentage={percentage} pulse={false} />
+      <div className="py-3"></div>
     </React.Fragment>
   )
 }

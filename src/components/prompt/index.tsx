@@ -286,7 +286,7 @@ export default function Prompt() {
               block
               w-full
               px-5
-              pb-20
+              pb-16
               text-base
               border-noneg
               rounded
@@ -297,7 +297,7 @@ export default function Prompt() {
               shadow appearance-none py-2 text-zinc-400 focus:outline-none focus:shadow-outline"
             id="prompt"
             onChange={handlePromptChange}
-            placeholder=" > _ ">
+            placeholder="Write your image prompt here... ">
           </textarea>
         </div>
 
@@ -504,7 +504,7 @@ export default function Prompt() {
 
 
               ">
-            #options
+            options
           </button>
 
           {/*submission button*/}

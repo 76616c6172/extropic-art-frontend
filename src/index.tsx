@@ -18,18 +18,44 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    {/* <NAVBAR /> */}
-    <div className="py-1 min-w-full max-w-6xl">
-      <HERO_INTRO />
-      <div className='py-0 px-5'>
-        <Prompt />
-        <div className='py-8'></div>
-        <JOB_QUEUE />
+
+    <div className="bg-black">
+
+      {/* <NAVBAR /> */}
+      <div className="flex items-center
+      flex-col  justify-center
+      ">
+
+        <section className="bg-black">
+
+          <div className="py-0 min-w-full max-w-6xl">
+            <HERO_INTRO />
+          </div>
+        </section>
+
       </div>
-      <div className='py-8'></div>
-      <div className='px-6'>
-        <GALLERY />
-      </div>
+
+    </div>
+
+    <div className="py-6"></div>
+
+    <div className="flex items-center
+      flex-col  justify-center
+      ">
+
+      <section>
+        <div className="py-0 min-w-full max-w-6xl">
+          <div className='py-0 px-5'>
+            <Prompt />
+            <div className='py-8'></div>
+            <JOB_QUEUE />
+          </div>
+          <div className='py-8'></div>
+          <div className='px-6'>
+            <GALLERY />
+          </div>
+        </div>
+      </section>
     </div>
 
   </React.StrictMode >
