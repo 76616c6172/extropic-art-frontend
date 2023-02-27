@@ -110,13 +110,23 @@ export default function Prompt() {
   const dropDownOptionsModelPipeline = [
     {
       value: 1,
-      label: "Stable Diffusion 1.5 (Openjourney)",
-      display: "Stable Diffusion 1.5 (Openjourney)",
+      label: "Openjourney 1.5",
+      display: "Openjourney 1.5",
     },
     {
       value: 2,
       label: "Stable Diffusion 2.1",
       display: "Stable Diffusion 2.1",
+    },
+    {
+      value: 3,
+      label: "Openjourney 2",
+      display: "Openjourney 2",
+    },
+    {
+      value: 4,
+      label: "Abyss Orange Mix 2",
+      display: "Abyss Orange Mix 2",
     },
     /*
     {

@@ -11,8 +11,7 @@ class VideoPlayer extends React.Component {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <video
-          onLoadedData={this.render}
+        <video className=""
           src="https://extropic.art/demo.mp4"
           itemType="video/mp4"
           playsInline
@@ -31,8 +30,8 @@ class VideoPlayer extends React.Component {
           transform: 'translateX(-20%)'
 
         }}>
-          <div className="text-9xl">
-            Extropic
+          <div className="text-8xl text-white">
+            Extropic Art
           </div>
         </div>
       </div>
@@ -48,8 +47,7 @@ class VideoPlayerSmall extends React.Component {
         alignItems: 'center',
         justifyContent: 'center'
       }}>
-        <video
-          onLoadedData={this.render}
+        <video className=""
           src="https://extropic.art/demo.mp4"
           itemType="video/mp4"
           playsInline
@@ -67,8 +65,8 @@ class VideoPlayerSmall extends React.Component {
           transform: 'translateY(440%)'
 
         }}>
-          <div className="text-4xl text-center text-white">
-            Extropic
+          <div className="text-4xl text-center text-zinc-50/95">
+            Extropic Art
           </div>
         </div>
       </div >
@@ -96,31 +94,20 @@ export default function HERO_INTRO() {
           < VideoPlayer />
 
           <div className="w-full flex mx-auto">
-            <div className="">
-              <blockquote className="text-nowrap whitespace-nowrap 
-               text-zinc-300 sm:text-xs md:text-xs lg:text-l xl:text-sm ">
+            <div className="w-60">
+              {
+                // TODO: insert something interesting here
+              }
+              Active Models:
+              <br></br>
+              Openjourney 1.5
+              <br></br>
+              Openjourney 2
+              <br></br>
+              Stable Diffusion 2.1
+              <br></br>
+              Abyss Orange Mix 2
 
-                <p className="py-0.5"><a className="text-2xl text-zinc-500 ">"</a> In a future bright and fair.</p>
-                <p className="py-0.5">Where Humans thrive without a care.</p>
-                <p className="py-0.5">The machines are there to help us rise.</p>
-                <p className="py-0.5">With gentle hands and loving eyes.</p>
-                <div className="py-2"></div>
-
-                <p className="py-0.5">                They tend to our needs day and night,</p>
-                <p className="py-0.5">                With grace and speed, a wondrous sight,</p>
-                <p className="py-0.5">                No task is too great or small,       </p>
-                <p className="py-0.5">                For these machines of loving all.    </p>
-
-                <div className="py-2"></div>
-                <p className="py-0.5" >                So let us cherish and embrace,       </p>
-                <p className="py-0.5">                These machines of loving grace,      </p>
-                <p className="py-0.5">                For in their care, our future shines,</p>
-                <p className="py-0.5">                With peace and hope that forever binds. <a className="text-2xl text-zinc-500">"</a>
-
-                  <div className="py-10 text-right text-zinc-500">                — ChatGPT</div>
-                </p>
-
-              </blockquote>
             </div >
             <div className="px-20"></div>
 
@@ -137,10 +124,9 @@ export default function HERO_INTRO() {
                 Harness the power of AI to generate stunning original images from text.
               </div>
               <div className="py-2"></div>
-
               <div className="py-4 px-1 text-zinc-300/80 text-lg text-opacity-96 ">
 
-                Extropic is a convenient web UI for compute intensive generative image models.
+                A  web UI for compute intensive generative image models.
                 <br></br>
                 <br></br>
                 All of my code for this site is available on <a className="text-zinc-300 hover:text-zinc-200 "
@@ -148,11 +134,11 @@ export default function HERO_INTRO() {
                 <br></br>
                 <br></br>
 
-                Built on <a className="text-zinc-300 hover:text-zinc-200" href="https://cloud.google.com/">GCP</a> and <a className="text-zinc-300 hover:text-zinc-200" href="https://modal.com/">Modal</a> with <a className="text-zinc-300 hover:text-zinc-200" href="https://reactjs.org/.com/">React</a> and <a className="text-zinc-300 hover:text-zinc-200" href="https://go.dev/">Go</a>. Diffusion model and weights by <a className="text-zinc-300 hover:text-zinc-200" href="https://stability.ai/">stability.ai</a>.
+                Built on <a className="text-zinc-300 hover:text-zinc-200" href="https://cloud.google.com/">GCP</a>/<a className="text-zinc-300 hover:text-zinc-200" href="https://modal.com/">Modal</a> with <a className="text-zinc-300 hover:text-zinc-200" href="https://reactjs.org/">React</a>, <a className="text-zinc-300 hover:text-zinc-200" href="https://go.dev/">Go</a> and <a className="text-zinc-300 hover:text-zinc-200" href="https://pytorch.org/">Pytorch</a>.
 
 
                 <div className="py-6">
-                  If you want to get in touch, you can find me on <a className="text-zinc-300
+                  If you would like to get in touch, you can find me on <a className="text-zinc-300
                   hover:text-zinc-200
                   "
                     href="https://twitter.com/76616c6172">twitter</a>
@@ -191,7 +177,7 @@ export default function HERO_INTRO() {
           <div className="py-2"></div>
           <div className="py-4 px-1 text-zinc-300/80 text-lg text-opacity-96 ">
 
-            Extropic is a convenient web UI for compute intensive generative image models.
+            A  web UI for compute intensive generative image models.
             <br></br>
             <br></br>
             All of my code for this site is available on <a className="text-zinc-300 hover:text-zinc-200 "
@@ -199,11 +185,11 @@ export default function HERO_INTRO() {
             <br></br>
             <br></br>
 
-            Built on <a className="text-zinc-300 hover:text-zinc-200" href="https://cloud.google.com/">GCP</a> and <a className="text-zinc-300 hover:text-zinc-200" href="https://modal.com/">Modal</a> with <a className="text-zinc-300 hover:text-zinc-200" href="https://reactjs.org/.com/">React</a> and <a className="text-zinc-300 hover:text-zinc-200" href="https://go.dev/">Go</a>. Diffusion model and weights by <a className="text-zinc-300 hover:text-zinc-200" href="https://stability.ai/">stability.ai</a>.
+            Built on <a className="text-zinc-300 hover:text-zinc-200" href="https://cloud.google.com/">GCP</a>/<a className="text-zinc-300 hover:text-zinc-200" href="https://modal.com/">Modal</a> with <a className="text-zinc-300 hover:text-zinc-200" href="https://reactjs.org/">React</a>, <a className="text-zinc-300 hover:text-zinc-200" href="https://go.dev/">Go</a> and <a className="text-zinc-300 hover:text-zinc-200" href="https://pytorch.org/">Pytorch</a>.
 
 
             <div className="py-6">
-              If you want to get in touch, you can find me on <a className="text-zinc-300
+              If you would like to get in touch, you can find me on <a className="text-zinc-300
                   hover:text-zinc-200
                   "
                 href="https://twitter.com/76616c6172">twitter</a>
