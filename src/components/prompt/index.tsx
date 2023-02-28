@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react"
+import { EnhanceAI } from "enhanceai"
 //import React, { useState } from 'react';
 
 import Select from 'react-select';
@@ -126,7 +127,7 @@ export default function Prompt() {
     {
       value: 4,
       label: "Abyss Orange Mix 2",
-      display: "Abyss Orange Mix 2",
+      display: "Model: Abyss Orange Mix 2",
     },
     /*
     {
@@ -184,7 +185,7 @@ export default function Prompt() {
   // set up stateful user prompt input meta data
   const [prompt, setPrompt] = useState("")
   const [seed, setSeed] = useState("enter seed number..")
-  const [modelPipeline, setModelPipeline] = useState(0)
+  const [modelPipeline, setModelPipeline] = useState(3)
   const [resolution, setResolution] = useState(0)
   const [x_res, setX_res] = useState(steps[0]);
 
@@ -262,7 +263,7 @@ export default function Prompt() {
           "
                 classNamePrefix="select"
                 onChange={handleModelPipelineChange}
-                defaultValue={dropDownOptionsModelPipeline[0]}
+                defaultValue={dropDownOptionsModelPipeline[3]}
                 isDisabled={isDisabled}
                 isClearable={isClearable}
                 isRtl={isRtl}
@@ -290,7 +291,8 @@ export default function Prompt() {
 
 
 
-          <textarea className="
+          <EnhanceAI context={"describe an image using stable diffusion keywords:"}>
+            <textarea className="
               bg-black flex-wrap
               form-control 
               block
@@ -305,10 +307,11 @@ export default function Prompt() {
               m-0
               leading-tightu
               shadow appearance-none py-2 text-zinc-400 focus:outline-none focus:shadow-outline"
-            id="prompt"
-            onChange={handlePromptChange}
-            placeholder="Write your image prompt here... ">
-          </textarea>
+              id="prompt"
+              onChange={handlePromptChange}
+              placeholder="Write your image prompt here... ">
+            </textarea>
+          </EnhanceAI>
         </div>
 
 
@@ -329,6 +332,7 @@ export default function Prompt() {
           accent-black"
           >
             <React.Fragment>
+
 
               {/*
                 modelPipeline == 0 &&
@@ -356,6 +360,7 @@ export default function Prompt() {
                   </text>
                 </Checkbox>
                 */ }
+
 
 
 
@@ -405,9 +410,9 @@ export default function Prompt() {
                     : null
                   }
                 </div>
+
+
               </div>
-
-
 
               {/*
                 <div>
@@ -462,7 +467,6 @@ export default function Prompt() {
 
         <div className="flex">
 
-
           <div className="w-full">
             {/*resolution selector dropdown*/}
             <Select
@@ -497,6 +501,7 @@ export default function Prompt() {
               options={dropDownOptionsResolution}
             />
           </div>
+
 
           <div className="w-full text-zinc-200 rounded-bl bg-black " ></div>
 

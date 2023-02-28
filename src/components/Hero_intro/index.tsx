@@ -98,7 +98,7 @@ export default function HERO_INTRO() {
               {
                 // TODO: insert something interesting here
               }
-              Active Models:
+              Models:
               <br></br>
               Openjourney 1.5
               <br></br>
