@@ -16,13 +16,27 @@ function Prompt(props: any) {
 		setOpen(open === value ? 0 : value);
 	};
 
+	const model: { [key: string]: string } = {
+		"1": "Openjourney 1.5",
+		"2": "Stable Diffusion 2.1",
+		"3": "Openjourney 2",
+		"4": "Abyss Orange Mix 2",
+		"5": "Vintedois Diffusion 0.2",
+		"6": "Pastel Mix"
+	};
+
 	return (
 		<div>
 			<div className="text-center break-words" >
-				{props.job.prompt}
-				<p className="text-zinc-600">
+				<div >
+					{props.job.prompt}
+				</div>
+				<div className="text-zinc-600">
+					{model[props.job.model_id]}
+				</div>
+				<div className="text-zinc-600">
 					{props.job.seed}
-				</p>
+				</div>
 			</div>
 
 			<Accordion open={open === 2}>

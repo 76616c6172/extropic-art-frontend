@@ -69,7 +69,7 @@ export default function Prompt() {
 
   const [submissionButtonIsBusy, setSubMissionButtonIsBusy] = useState(false)
   const [isClearable, setIsClearable] = useState(false)
-  const [isSearchable, setIsSearchable] = useState(true)
+  const [isSearchable, setIsSearchable] = useState(false)
   const [isDisabled, setIsDisabled] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [isRtl, setIsRtl] = useState(false)
@@ -129,6 +129,16 @@ export default function Prompt() {
       label: "Abyss Orange Mix 2",
       display: "Model: Abyss Orange Mix 2",
     },
+    {
+      value: 5,
+      label: "Vintedois Diffusion 0.2",
+      display: "Vintedois Diffusion 0.2",
+    },
+    {
+      value: 6,
+      label: "Pastel Mix",
+      display: "Pastel Mix",
+    },
     /*
     {
         value: 3,
@@ -185,8 +195,8 @@ export default function Prompt() {
   // set up stateful user prompt input meta data
   const [prompt, setPrompt] = useState("")
   const [seed, setSeed] = useState("enter seed number..")
-  const [modelPipeline, setModelPipeline] = useState(3)
-  const [resolution, setResolution] = useState(0)
+  const [modelPipeline, setModelPipeline] = useState(5)
+  const [resolution, setResolution] = useState(6)
   const [x_res, setX_res] = useState(steps[0]);
 
   // track and save the user provided metadata for job submissions
@@ -236,7 +246,7 @@ export default function Prompt() {
 
             {/* Model pipeline dropdown selection */}
             {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
-            <div className="w-52
+            <div className="w-60
             ">
 
               <Select
@@ -263,7 +273,7 @@ export default function Prompt() {
           "
                 classNamePrefix="select"
                 onChange={handleModelPipelineChange}
-                defaultValue={dropDownOptionsModelPipeline[3]}
+                defaultValue={dropDownOptionsModelPipeline[4]}
                 isDisabled={isDisabled}
                 isClearable={isClearable}
                 isRtl={isRtl}
@@ -493,7 +503,7 @@ export default function Prompt() {
               "
               classNamePrefix="select"
               onChange={handleResolutionChange}
-              defaultValue={dropDownOptionsResolution[0]}
+              defaultValue={dropDownOptionsResolution[5]}
               isDisabled={isDisabled}
               isClearable={isClearable}
               isRtl={isRtl}

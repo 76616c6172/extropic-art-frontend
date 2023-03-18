@@ -39,6 +39,8 @@ function Live_Gallery(): JSX.Element {
   const forcefully_update_the_live_gallery_component = useForceUpdate()
 
   const [newestJob, setNewestJob] = useState(0)
+
+  /*
   // Asynchrounously makes requests to check the live job queue over and over
   const continouslyRefreshJobQueue = async () => {
     while (true) {
@@ -78,10 +80,48 @@ function Live_Gallery(): JSX.Element {
       await Delay(MS_TIME_BETWEEN_REFRESH)
     }
   }
+  */
+  const continuouslyRefreshJobQueue = async () => {
+    while (true) {
+      try {
+        const statusResponse = await axios.get(URL + "/status");
+        const liveNewestCompletedJob = parseInt(statusResponse.data.newest_completed_job);
+
+        if (!DID_SET_NEWEST_JOB) {
+          setNewestJob(liveNewestCompletedJob);
+          DID_SET_NEWEST_JOB = true;
+          OLD_NEWEST_COMPLETED_JOB = liveNewestCompletedJob;
+        } else {
+          if (OLD_NEWEST_COMPLETED_JOB !== liveNewestCompletedJob) {
+            // Loop through the newly completed jobs
+            for (let i = OLD_NEWEST_COMPLETED_JOB + 1; i <= liveNewestCompletedJob; i++) {
+              const jobResponse = await axios.get(JOBS_API_URL + i.toString());
+
+              if (jobResponse.data.job_status === "completed") {
+                console.log("updating job: ", (i).toString())
+
+                update_img_list((i).toString());
+                forcefully_update_the_live_gallery_component();
+              }
+            }
+
+            // Update the OLD_NEWEST_COMPLETED_JOB value
+            OLD_NEWEST_COMPLETED_JOB = liveNewestCompletedJob;
+          }
+        }
+      } catch (err) {
+        console.log(err);
+      }
+
+      await Delay(MS_TIME_BETWEEN_REFRESH);
+    }
+  };
+
+
   // Fire the live queue request loop only once on page load
   useEffect(() => {
     if (LIVE_GAL_NOT_FIRED_LOOP) {
-      continouslyRefreshJobQueue()
+      continuouslyRefreshJobQueue()
       LIVE_GAL_NOT_FIRED_LOOP = false
     }
     return

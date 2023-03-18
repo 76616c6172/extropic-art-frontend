@@ -31,7 +31,7 @@ class VideoPlayer extends React.Component {
 
         }}>
           <div className="text-8xl text-white">
-            Extropic Art
+            Extropic
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@ class VideoPlayerSmall extends React.Component {
 
         }}>
           <div className="text-4xl text-center text-zinc-50/95">
-            Extropic Art
+            Extropic
           </div>
         </div>
       </div >
@@ -98,8 +98,6 @@ export default function HERO_INTRO() {
               {
                 // TODO: insert something interesting here
               }
-              Models:
-              <br></br>
               Openjourney 1.5
               <br></br>
               Openjourney 2
@@ -107,7 +105,10 @@ export default function HERO_INTRO() {
               Stable Diffusion 2.1
               <br></br>
               Abyss Orange Mix 2
-
+              <br></br>
+              Vintedois Diffusion 0.2
+              <br></br>
+              Pastel Mix
             </div >
             <div className="px-20"></div>
 
