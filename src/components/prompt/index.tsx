@@ -139,6 +139,11 @@ export default function Prompt() {
       label: "Pastel Mix",
       display: "Pastel Mix",
     },
+    {
+      value: 7,
+      label: "Stable Diffusion XL",
+      display: "Stable Diffusion XL",
+    },
     /*
     {
         value: 3,
@@ -151,52 +156,53 @@ export default function Prompt() {
   const dropDownOptionsResolution = [
     {
       value: 1,
-      label: "512x512 square sm",
+      label: "512x512 square",
       display: "512x512",
     },
     {
       value: 2,
-      label: "512x768 portrait sm",
+      label: "512x768 portrait",
       display: "512x768",
     },
     {
       value: 3,
-      label: "768x512 wide sm",
+      label: "768x512 landscape",
       display: "768x512",
     },
-    {
-      value: 4,
-      label: "1024x512 ultrawide",
-      display: "1024x512",
-    },
-    {
-      value: 5,
-      label: "512x1024 long",
-      display: "512x1024",
-    },
-    {
-      value: 6,
-      label: "768x768 square lg",
-      display: "768x768",
-    },
-    {
-      value: 7,
-      label: "768x1024 portrait lg",
-      display: "768x1024",
-    },
-    {
-      value: 8,
-      label: "1024x768 wide lg",
-      display: "1024x768",
-    },
+    //
+    //    {
+    //      value: 4,
+    //      label: "1024x512 ultrawide",
+    //      display: "1024x512",
+    //    },
+    //    {
+    //      value: 5,
+    //      label: "512x1024 long",
+    //      display: "512x1024",
+    //    },
+    //    {
+    //      value: 6,
+    //      label: "768x768 square lg",
+    //      display: "768x768",
+    //    },
+    //    {
+    //      value: 7,
+    //      label: "768x1024 portrait lg",
+    //      display: "768x1024",
+    //    },
+    //    {
+    //      value: 8,
+    //      label: "1024x768 wide lg",
+    //      display: "1024x768",
+    //    },
   ]
 
 
   // set up stateful user prompt input meta data
   const [prompt, setPrompt] = useState("")
   const [seed, setSeed] = useState("enter seed number..")
-  const [modelPipeline, setModelPipeline] = useState(5)
-  const [resolution, setResolution] = useState(6)
+  const [modelPipeline, setModelPipeline] = useState(7)
+  const [resolution, setResolution] = useState(0)
   const [x_res, setX_res] = useState(steps[0]);
 
   // track and save the user provided metadata for job submissions
@@ -236,7 +242,7 @@ export default function Prompt() {
 
       <div className="rounded bg-black
     shadow-xl
-    shadow-indigo-600/25
+    hover:shadow-indigo-600/25
     ">
 
         <div className="flex">
@@ -246,40 +252,41 @@ export default function Prompt() {
 
             {/* Model pipeline dropdown selection */}
             {/*isLoading={isLoading} //a prop that can be passed to the Selector to display a loading spinner..*/}
-            <div className="w-60
+            <div className="w-max
             ">
+              <div className="p-0.5 border-l-1 hover:border-solid rounded border-r-0 hover:bg-[#4F46E5]/40" >
+                <Select
+                  theme={(theme) => ({
+                    ...theme,
+                    borderRadius: 0,
+                    colors: {
+                      ...theme.colors,
+                      primary: '#4F46E5',
+                      primary25: '#000000',
+                      text: '#000000',
+                      neutral0: '#000000',
+                      neutral5: '#000000',
+                      neutral10: '#000000',
+                      neutral20: '#000000',
+                      neutral30: '#000000',
+                      primary50: '#4F46E5', //selection flash on click
+                      neutral80: '#FFFFFF', // title
+                      neutral90: '000000',
 
-              <Select
-                theme={(theme) => ({
-                  ...theme,
-                  borderRadius: 0,
-                  colors: {
-                    ...theme.colors,
-                    primary: '#4F46E5',
-                    primary25: '#000000',
-                    text: '#000000',
-                    neutral0: '#000000',
-                    neutral5: '#000000',
-                    neutral10: '#000000',
-                    neutral20: '#000000',
-                    neutral30: '#000000',
-                    primary50: '#4F46E5', //selection flash on click
-                    neutral80: '#ffffff', // title
-                    neutral90: '#0000000',
-
-                  },
-                })}
-                className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
+                    },
+                  })}
+                  className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
           "
-                classNamePrefix="select"
-                onChange={handleModelPipelineChange}
-                defaultValue={dropDownOptionsModelPipeline[4]}
-                isDisabled={isDisabled}
-                isClearable={isClearable}
-                isRtl={isRtl}
-                isSearchable={isSearchable}
-                options={dropDownOptionsModelPipeline}
-              />
+                  classNamePrefix="select"
+                  onChange={handleModelPipelineChange}
+                  defaultValue={dropDownOptionsModelPipeline[6]}
+                  isDisabled={isDisabled}
+                  isClearable={isClearable}
+                  isRtl={isRtl}
+                  isSearchable={isSearchable}
+                  options={dropDownOptionsModelPipeline}
+                />
+              </div>
             </div>
           </div>
 
@@ -296,12 +303,9 @@ export default function Prompt() {
 
 
         {/* Prompt text input field*/}
-        <div className="py-1 ">
-
-
-
-
-          <EnhanceAI context={"describe an image using stable diffusion keywords:"}>
+        <div className="p-0.5 rounded hover:bg-[#4F46E5]/40
+        ">
+          <EnhanceAI context={"Image alt text:"}>
             <textarea className="
               bg-black flex-wrap
               form-control 
@@ -319,7 +323,7 @@ export default function Prompt() {
               shadow appearance-none py-2 text-zinc-400 focus:outline-none focus:shadow-outline"
               id="prompt"
               onChange={handlePromptChange}
-              placeholder="Write your image prompt here... ">
+              placeholder="What do you want to see?">
             </textarea>
           </EnhanceAI>
         </div>
@@ -390,6 +394,7 @@ export default function Prompt() {
               <div className="flex
                           text-zinc-400 ">
 
+                <div className="px-2">--</div>
                 <div className="
                 hover:cursor-pointer
                 px-2"
@@ -478,38 +483,41 @@ export default function Prompt() {
         <div className="flex">
 
           <div className="w-full">
-            {/*resolution selector dropdown*/}
-            <Select
-              theme={(theme) => ({
-                ...theme,
-                borderRadius: 0,
-                colors: {
-                  ...theme.colors,
-                  primary: '#4F46E5',
-                  primary25: '#000000',
-                  text: '#000000',
-                  neutral0: '#000000',
-                  neutral5: '#000000',
-                  neutral10: '#000000',
-                  neutral20: '#000000',
-                  neutral30: '#000000',
-                  primary50: '#4F46E5', //selection flash on click
-                  neutral80: '#0000000', // title
-                  neutral90: '#0000000',
 
-                },
-              })}
-              className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
+            {/*resolution selector dropdown*/}
+            <div className="p-0.5 border-l-1 hover:border-solid rounded border-r-0 hover:bg-[#4F46E5]/40" >
+              <Select
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary: '#4F46E5',
+                    primary25: '#000000',
+                    text: '#000000',
+                    neutral0: '#000000',
+                    neutral5: '#000000',
+                    neutral10: '#000000',
+                    neutral20: '#000000',
+                    neutral30: '#000000',
+                    primary50: '#4F46E5', //selection flash on click
+                    neutral80: '#0000000', // title
+                    neutral90: '#0000000',
+
+                  },
+                })}
+                className="basic-single accent-black bg-black bg-black-primary hover:bg-black focus:bg-black active:bg-black border-solid border-black
               "
-              classNamePrefix="select"
-              onChange={handleResolutionChange}
-              defaultValue={dropDownOptionsResolution[5]}
-              isDisabled={isDisabled}
-              isClearable={isClearable}
-              isRtl={isRtl}
-              isSearchable={isSearchable}
-              options={dropDownOptionsResolution}
-            />
+                classNamePrefix="select"
+                onChange={handleResolutionChange}
+                defaultValue={dropDownOptionsResolution[0]}
+                isDisabled={isDisabled}
+                isClearable={isClearable}
+                isRtl={isRtl}
+                isSearchable={isSearchable}
+                options={dropDownOptionsResolution}
+              />
+            </div>
           </div>
 
 

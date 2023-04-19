@@ -22,7 +22,8 @@ function Prompt(props: any) {
 		"3": "Openjourney 2",
 		"4": "Abyss Orange Mix 2",
 		"5": "Vintedois Diffusion 0.2",
-		"6": "Pastel Mix"
+		"6": "Pastel Mix",
+		"7": "Stable Diffusion XL",
 	};
 
 	return (
@@ -80,7 +81,7 @@ export function GALLERY_IMAGE(props: any) {
 
 			<div className='bg-black rounded 
       shadow-xl
-    shadow-indigo-500/25
+    hover:shadow-indigo-500/25
 			'
 			>
 				<a href={IMG_API_URL + props.jobid} target="_blank" rel="noopener noreferrer">
@@ -90,7 +91,7 @@ export function GALLERY_IMAGE(props: any) {
 						src={IMG_API_URL + props.jobid} />
 				</a>
 
-				<div className="px-1 py-1 rounded shadow-indigo-600/10 shadow-xl  
+				<div className="px-1 py-1 rounded hover:shadow-indigo-600/10 shadow-xl max-w-5xl
           			bg-black"> <Prompt job={jobMetaData} />
 				</div>
 

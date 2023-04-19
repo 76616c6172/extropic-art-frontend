@@ -31,7 +31,6 @@ class VideoPlayer extends React.Component {
 
         }}>
           <div className="text-8xl text-white">
-            Extropic
           </div>
         </div>
       </div>
@@ -66,7 +65,6 @@ class VideoPlayerSmall extends React.Component {
 
         }}>
           <div className="text-4xl text-center text-zinc-50/95">
-            Extropic
           </div>
         </div>
       </div >
@@ -98,17 +96,38 @@ export default function HERO_INTRO() {
               {
                 // TODO: insert something interesting here
               }
-              Openjourney 1.5
+              <div className="font-black  text-zinc-200 hover:text-zinc-10" >
+                Featuring:
+              </div>
+              <a href="https://huggingface.co/prompthero/openjourney" className="text-zinc-300 hover:text-zinc-100" >
+                · Openjourney 1.5
+              </a>
+
               <br></br>
-              Openjourney 2
+              <a href="https://huggingface.co/prompthero/openjourney-v4" className="text-zinc-300 hover:text-zinc-100" >
+                · Openjourney 2
+              </a>
+
               <br></br>
-              Stable Diffusion 2.1
+              <a href="https://huggingface.co/stabilityai/stable-diffusion-2-1" className="text-zinc-300 hover:text-zinc-100" >
+                · Stable Diffusion 2.1
+              </a>
               <br></br>
-              Abyss Orange Mix 2
+              <a href="https://stability.ai/blog/stable-diffusion-xl-beta-available-for-api-customers-and-dreamstudio-users" className="text-zinc-300 hover:text-zinc-100" >
+                · Stable Diffusion XL
+              </a>
               <br></br>
-              Vintedois Diffusion 0.2
+              <a href="https://huggingface.co/WarriorMama777/AbyssOrangeMix2" className="text-zinc-300 hover:text-zinc-100" >
+                · Abyss Orange Mix 2
+              </a>
               <br></br>
-              Pastel Mix
+              <a href="https://huggingface.co/22h/vintedois-diffusion-v0-2" className="text-zinc-300 hover:text-zinc-100" >
+                · Vintedois Diffusion 0.2
+              </a>
+              <br></br>
+              <a href="https://huggingface.co/andite/pastel-mix" className="text-zinc-300 hover:text-zinc-100" >
+                · Pastel Mix
+              </a>
             </div >
             <div className="px-20"></div>
 
@@ -122,25 +141,23 @@ export default function HERO_INTRO() {
             bg-gradient-to-tl from-indigo-600 to-blue-400
             drop-shadow-lg
             shadow-white" >
-                Harness the power of AI to generate stunning original images from text.
               </div>
               <div className="py-2"></div>
               <div className="py-4 px-1 text-zinc-300/80 text-lg text-opacity-96 ">
 
-                A  web UI for compute intensive generative image models.
+                A  web UI for generative image models.
                 <br></br>
                 <br></br>
                 All of my code for this site is available on <a className="text-zinc-300 hover:text-zinc-200 "
                   href="https://github.com/76616c6172">Github</a> and I don't make any money from this.
                 <br></br>
-                <br></br>
 
-                Built on <a className="text-zinc-300 hover:text-zinc-200" href="https://cloud.google.com/">GCP</a>/<a className="text-zinc-300 hover:text-zinc-200" href="https://modal.com/">Modal</a> with <a className="text-zinc-300 hover:text-zinc-200" href="https://reactjs.org/">React</a>, <a className="text-zinc-300 hover:text-zinc-200" href="https://go.dev/">Go</a> and <a className="text-zinc-300 hover:text-zinc-200" href="https://pytorch.org/">Pytorch</a>.
+                Built on <a className="text-zinc-300 hover:text-zinc-100" href="https://cloud.google.com/">GCP</a>/<a className="text-zinc-300 hover:text-zinc-100" href="https://modal.com/">Modal</a> with <a className="text-zinc-300 hover:text-zinc-100" href="https://reactjs.org/">React</a>, <a className="text-zinc-300 hover:text-zinc-100" href="https://go.dev/">Go</a> and <a className="text-zinc-300 hover:text-zinc-100" href="https://pytorch.org/">Pytorch</a>.
 
 
                 <div className="py-6">
-                  If you would like to get in touch, you can find me on <a className="text-zinc-300
-                  hover:text-zinc-200
+                  If you want to get in touch, you can find me on <a className="text-zinc-300
+                  hover:text-zinc-100
                   "
                     href="https://twitter.com/76616c6172">twitter</a>
                   .
@@ -173,25 +190,21 @@ export default function HERO_INTRO() {
             bg-gradient-to-tl from-indigo-600 to-blue-400
             drop-shadow-lg
             shadow-white" >
-            Harness the power of AI to generate stunning original images from text.
           </div>
           <div className="py-2"></div>
           <div className="py-4 px-1 text-zinc-300/80 text-lg text-opacity-96 ">
-
-            A  web UI for compute intensive generative image models.
+            A  web UI for generative image models.
             <br></br>
             <br></br>
-            All of my code for this site is available on <a className="text-zinc-300 hover:text-zinc-200 "
+            All of my code for this site is available on <a className="text-zinc-300 hover:text-zinc-100 "
               href="https://github.com/76616c6172">Github</a> and I don't make any money from this.
             <br></br>
-            <br></br>
 
-            Built on <a className="text-zinc-300 hover:text-zinc-200" href="https://cloud.google.com/">GCP</a>/<a className="text-zinc-300 hover:text-zinc-200" href="https://modal.com/">Modal</a> with <a className="text-zinc-300 hover:text-zinc-200" href="https://reactjs.org/">React</a>, <a className="text-zinc-300 hover:text-zinc-200" href="https://go.dev/">Go</a> and <a className="text-zinc-300 hover:text-zinc-200" href="https://pytorch.org/">Pytorch</a>.
-
+            Built on <a className="text-zinc-300 hover:text-zinc-100" href="https://cloud.google.com/">GCP</a>/<a className="text-zinc-300 hover:text-zinc-100" href="https://modal.com/">Modal</a> with <a className="text-zinc-300 hover:text-zinc-100" href="https://reactjs.org/">React</a>, <a className="text-zinc-300 hover:text-zinc-100" href="https://go.dev/">Go</a> and <a className="text-zinc-300 hover:text-zinc-100" href="https://pytorch.org/">Pytorch</a>.
 
             <div className="py-6">
-              If you would like to get in touch, you can find me on <a className="text-zinc-300
-                  hover:text-zinc-200
+              If you want to get in touch, you can find me on <a className="text-zinc-300
+                  hover:text-zinc-100
                   "
                 href="https://twitter.com/76616c6172">twitter</a>
               .

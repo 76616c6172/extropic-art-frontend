@@ -13,10 +13,7 @@ export function JOB_PROMPT(props: any) {
 				<div className="animate-pulse
             text-opacity-96
 			rounded
-			bg-black
 			text-zinc-200
-      		shadow-xl
-    		shadow-indigo-500/25
          sm:text-xs md:text-lg lg:text-lg xl:text-lg 2xl:text-2xl
          px-2 py-0"
 				>
@@ -29,7 +26,6 @@ export function JOB_PROMPT(props: any) {
 		<div className=''>
 			<div className="
 		text-zinc-400/80
-			bg-black
             text-opacity-96
 			rounded
          sm:text-xs md:text-lg lg:text-lg xl:text-lg 2xl:text-2xl

@@ -228,7 +228,7 @@ export default function GALLERY() {
           <React.Fragment key={job_object.id}>
             < GALLERY_IMAGE jobid={job_object.jobid} />
             {job_object.id - 1 === limit * page ? (
-              <Waypoint onEnter={() => setPage(page + 1)} />) : null}
+              <Waypoint bottomOffset={"-400px"} onEnter={() => setPage(page + 1)} />) : null}
           </React.Fragment>
         ))}
       </div>
