@@ -200,10 +200,6 @@ export default function GALLERY() {
     },
   ]
 
-  // TODO SCALING CHANGE:
-  // Build out the full list of completed job objects based on the latest completed job
-  // This will have to be changed to not build all the way down to job 1
-  // But rather depend on how far the user has scrolled, else it won't scale to 1000x jobs
   let id = 2
   for (let i = newestJobOnFirstLoad - 1; i > 0; i--) {
     gallery_items_list.push({ id: id, jobid: String(i) })

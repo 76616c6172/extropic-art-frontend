@@ -145,7 +145,7 @@ export default function HERO_INTRO() {
               <div className="py-2"></div>
               <div className="py-4 px-1 text-zinc-300/80 text-lg text-opacity-96 ">
 
-                A  web UI for generative image models.
+                A  web UI for AI generated images.
                 <br></br>
                 <br></br>
                 All of my code for this site is available on <a className="text-zinc-300 hover:text-zinc-200 "
@@ -193,7 +193,7 @@ export default function HERO_INTRO() {
           </div>
           <div className="py-2"></div>
           <div className="py-4 px-1 text-zinc-300/80 text-lg text-opacity-96 ">
-            A  web UI for generative image models.
+            A  web UI for AI generated images.
             <br></br>
             <br></br>
             All of my code for this site is available on <a className="text-zinc-300 hover:text-zinc-100 "

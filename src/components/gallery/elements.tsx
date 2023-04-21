@@ -17,6 +17,7 @@ function Prompt(props: any) {
 	};
 
 	const model: { [key: string]: string } = {
+		"-1": "[ UPSCALED: esrgan-v1-x2plus ]",
 		"1": "Openjourney 1.5",
 		"2": "Stable Diffusion 2.1",
 		"3": "Openjourney 2",
@@ -27,7 +28,7 @@ function Prompt(props: any) {
 	};
 
 	return (
-		<div>
+		<div onClick={() => setOpen(2)}>
 			<div className="text-center break-words" >
 				<div >
 					{props.job.prompt}
@@ -58,6 +59,35 @@ function Prompt(props: any) {
 		</div >
 	)
 }
+/*
+const handlePromptSubmission = () => {
+	const headers = {
+		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*',
+	}
+
+	axios.post("https://extropic.art/api/1/jobs",
+		{
+			model_pipeline: modelPipeline,
+			resolution: resolution,
+			prompt: prompt,
+			lock_seed: isCustomSeed,
+			seed: seed,
+			high_guidance: isHighGuidance,
+			pre_prompt: isEnablePrePrompt,
+			upscale: isUpScale,
+		},
+		{ headers: headers }
+	).then((result) => {
+		setSubMissionButtonIsBusy(false)
+	}).catch(err => {
+		console.log(err)
+		setSubMissionButtonIsBusy(false)
+	})
+}
+*/
+
+
 
 export function GALLERY_IMAGE(props: any) {
 	const IMG_API_URL = "https://extropic.art/api/0/img?type=thumbnail?jobid="
