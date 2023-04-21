@@ -11,13 +11,14 @@ import {
 // TODO: should display seed too!
 // Prompt component for each gallery image
 function Prompt(props: any) {
+	const [submissionButtonIsBusy, setSubMissionButtonIsBusy] = useState(false)
 	const [open, setOpen] = useState(1);
 	const handleOpen = (value: any) => {
 		setOpen(open === value ? 0 : value);
 	};
 
 	const model: { [key: string]: string } = {
-		"-1": "[ UPSCALED: esrgan-v1-x2plus ]",
+		"-1": "[ Upscaled ]",
 		"1": "Openjourney 1.5",
 		"2": "Stable Diffusion 2.1",
 		"3": "Openjourney 2",
@@ -27,8 +28,39 @@ function Prompt(props: any) {
 		"7": "Stable Diffusion XL",
 	};
 
+	const handleUpscaleSubmission = (j: any) => {
+		const headers = {
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*',
+		}
+		console.log(j)
+		setSubMissionButtonIsBusy(true)
+		axios.post("https://extropic.art/api/1/jobs",
+			{
+
+				model_pipeline: -1,
+				prompt: j.prompt,
+				upscale: true,
+				seed: j.seed.toString(),
+				lock_seed: true,
+				resolution: parseInt(j.jobid)
+			},
+			{ headers: headers }
+		).then((result) => {
+			setSubMissionButtonIsBusy(false)
+		}).catch(err => {
+			console.log(err)
+			setSubMissionButtonIsBusy(false)
+		})
+	}
+
+	function toggleOpen() {
+		setOpen(open === 1 ? 2 : 1);
+	}
+
+
 	return (
-		<div onClick={() => setOpen(2)}>
+		<div onClick={() => toggleOpen()} >
 			<div className="text-center break-words" >
 				<div >
 					{props.job.prompt}
@@ -50,42 +82,50 @@ function Prompt(props: any) {
 				>
 				</div>
 
-				<AccordionBody className=" px-1 accent-black">
-					<p className="text-zinc-500 mx-auto  text-base">
-						status: {props.job.job_status}
-					</p>
-				</AccordionBody>
+				{props.job.model_id !== "-1" && (
+					<AccordionBody className=" px-1 accent-black">
+						{/*submission button*/}
+						<div className="">
+
+							<p className="text-zinc-600 mx-auto text-center text-base hover:text-white hover:cursor-pointer"
+								onClick={() => handleUpscaleSubmission(props.job)}
+
+							>
+								<div className="">
+									<div className=""> <SubmissionButton buttonLoading={submissionButtonIsBusy} /> </div>
+								</div>
+							</p>
+
+						</div>
+					</AccordionBody>
+				)}
+
 			</Accordion>
 		</div >
 	)
 }
-/*
-const handlePromptSubmission = () => {
-	const headers = {
-		'Content-Type': 'application/json',
-		'Access-Control-Allow-Origin': '*',
-	}
 
-	axios.post("https://extropic.art/api/1/jobs",
-		{
-			model_pipeline: modelPipeline,
-			resolution: resolution,
-			prompt: prompt,
-			lock_seed: isCustomSeed,
-			seed: seed,
-			high_guidance: isHighGuidance,
-			pre_prompt: isEnablePrePrompt,
-			upscale: isUpScale,
-		},
-		{ headers: headers }
-	).then((result) => {
-		setSubMissionButtonIsBusy(false)
-	}).catch(err => {
-		console.log(err)
-		setSubMissionButtonIsBusy(false)
-	})
+// Renders prompt submission button as loading spinner
+function ButtonLoading() {
+	return (
+		<div> sending...</div>
+	)
 }
-*/
+
+// Renders prompt submission button as loading spinner
+function ButtonIsReady() {
+	return (
+		<div> upscale</div>
+	)
+}
+
+// Renders prompt submission button when button is ready
+function SubmissionButton(props: any) {
+	if (props.buttonLoading) {
+		return <ButtonLoading />;
+	}
+	return <ButtonIsReady />;
+}
 
 
 
@@ -114,12 +154,10 @@ export function GALLERY_IMAGE(props: any) {
     hover:shadow-indigo-500/25
 			'
 			>
-				<a href={IMG_API_URL + props.jobid} target="_blank" rel="noopener noreferrer">
-					<img className='mx-auto justify-center
-          							hover:cursor-pointer'
-						/* onClick={() => alert(props.jobid)} */
-						src={IMG_API_URL + props.jobid} />
-				</a>
+				<img
+					className='mx-auto justify-center
+					hover:cursor-pointer'
+					src={IMG_API_URL + props.jobid} />
 
 				<div className="px-1 py-1 rounded hover:shadow-indigo-600/10 shadow-xl max-w-5xl
           			bg-black"> <Prompt job={jobMetaData} />
