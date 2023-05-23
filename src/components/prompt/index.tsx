@@ -114,26 +114,26 @@ export default function Prompt() {
       label: "Openjourney 1.5",
       display: "Openjourney 1.5",
     },
-    {
-      value: 2,
-      label: "Stable Diffusion 2.1",
-      display: "Stable Diffusion 2.1",
-    },
-    {
-      value: 3,
-      label: "Openjourney 2",
-      display: "Openjourney 2",
-    },
+    //{
+    //  value: 2,
+    //  label: "Stable Diffusion 2.1",
+    //  display: "Stable Diffusion 2.1",
+    //},
+    // {
+    //   value: 3,
+    //   label: "Openjourney 2",
+    //   display: "Openjourney 2",
+    // },
     {
       value: 4,
       label: "Abyss Orange Mix 2",
       display: "Model: Abyss Orange Mix 2",
     },
-    {
-      value: 5,
-      label: "Vintedois Diffusion 0.2",
-      display: "Vintedois Diffusion 0.2",
-    },
+    //{
+    //  value: 5,
+    //  label: "Vintedois Diffusion 0.2",
+    //  display: "Vintedois Diffusion 0.2",
+    //},
     {
       value: 6,
       label: "Pastel Mix",
@@ -279,7 +279,7 @@ export default function Prompt() {
           "
                   classNamePrefix="select"
                   onChange={handleModelPipelineChange}
-                  defaultValue={dropDownOptionsModelPipeline[6]}
+                  defaultValue={dropDownOptionsModelPipeline[3]}
                   isDisabled={isDisabled}
                   isClearable={isClearable}
                   isRtl={isRtl}
